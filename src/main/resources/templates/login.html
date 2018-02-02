@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <div th:replace="fragments/fragment :: links"></div>
+  </head>
+  <body>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark navigasi">
+		<a class="navbar-brand" href="#">
+		<div id="logo-navbar">
+			<div class="logo-rectangle">
+			</div>
+				<p class="logo-text">Kurikulum</p>
+			</div>
+		</a>
+</nav>
+	
+		<div>
+			<img src="img/kurikulum2.jpg" class="logo-kurikulum"></img>
+		</div>
+	
+	<div class="row">
+			<div class="col-md-3"></div>
+			<div class="col-md-6">
+				
+				<form th:action="@{/login}" method="post">	
+				<div class="row" style="position: absolute; left: 100px; top: 355px; background-color:#666666; padding:10px;">
+				
+					<div class="col-md-4">
+						<input name="username" type="text" class="form-control form-field-username" placeholder="username"></input>
+					</div>
+					<div class="col-md-4">
+						<input name="password" type="password" class="form-control form-field-password" placeholder="password"></input>
+					</div>
+					<div class="col-md-3">
+						 <button style="margin-left: 35px; padding-right: 50px; padding-left: 50px;" class="btn submit-button" name= "submit" type="submit">Login</button>
+					</div>
+					
+					
+				</div>
+				</form>
+			</div>
+			<div class="col-md-3"></div>
+				
+		</div>
+
+    <div th:replace="fragments/fragment :: footer"></div>
+    <style>
+	body {
+          padding-top: 2rem;
+        }
+	
+		
+		/* navbar */
+		.navbar{
+			position: absolute;
+			width: 1440px;
+			height: 50px;
+			left: 0px;
+			top: 0px;
+		}
+
+		/* Rectangle */
+		.rectangle-navbar{
+			position: absolute;
+			width: 1440px;
+			height: 50px;
+			left: 0px;
+			top: 0px;
+
+			background: #333333;
+		}
+		
+.logo-kurikulum{
+				position: absolute;
+				width:900px;
+				padding-top:150px;
+				padding-left:400px;
+				margin-left: 100px;
+			}
+			
+.navigasi {
+	height: 50px;
+}
+		
+/* logo */
+.logo-center{
+position: absolute;
+width: 303px;
+height: 128px;
+left: 569px;
+top: 265px;
+}
+
+
+/* Rectangle */
+.rectangle-logo{
+position: absolute;
+left: 0%;
+right: 47.19%;
+top: 0%;
+bottom: 0%;
+
+background: linear-gradient(308.66deg, #F77062 0%, #FE5196 100%);
+}
+
+/* Kurikulum */
+.kurikulum-text-logo{
+position: absolute;
+left: 10.56%;
+right: 0%;
+top: 20.31%;
+bottom: 20.31%;
+
+font-family: Inter UI;
+font-style: italic;
+font-weight: 900;
+line-height: normal;
+font-size: 64px;
+letter-spacing: -0.05em;
+
+color: #333333;
+}
+
+/* container */
+.container-box{
+position: absolute;
+width: 618px;
+height: 65px;
+left: 407px;
+top: 407px;
+}
+
+
+/* Rectangle 2.14 */
+.rectangle-box1{
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+background: #666666;
+}
+
+
+/* Rectangle 3 */
+.rectangle-username{
+position: absolute;
+width: 200px;
+height: 30px;
+left: 434px;
+top: 424px;
+
+background: #FFFFFF;
+}
+
+/* Rectangle 3.1 */
+.rectangle-password{
+position: absolute;
+width: 200px;
+height: 30px;
+left: 656px;
+top: 424.44px;
+
+background: #FFFFFF;
+}
+
+.form-field-username {
+	border-radius: 0px;
+}
+
+.form-field-password {
+	border-radius: 0px;
+
+}
+
+
+/* Rectangle 3 */
+.submit-button{
+background: #00E3AE;
+border-radius: 0px;
+padding-left: 30px;
+padding-right: 30px;
+margin-right: 0px;
+}
+	</style>
+
+  </body>
+</html>

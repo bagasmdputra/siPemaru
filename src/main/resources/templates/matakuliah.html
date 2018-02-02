@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+	<head>
+  		<title th:text="${pagetitle}"></title>
+    	<div th:replace="fragments/fragment :: links"></div>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    	<meta charset="utf-8"/>
+    	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  	</head>
+  <body>
+  <div th:replace="fragments/fragment :: header"></div>
+		<h4 class="home-title">SIAK FG - Mata Kuliah</h4> 
+		<div class="navhome">
+			<a class="home-title1" th:href="@{/}">Home</a> >> <a class="home-title2">Mata Kuliah</a>
+		</div>
+	<div class="container">
+	<div class="row">
+			<br></br>
+			<div class="col-md-2"></div>
+				<div class="col-md-8">
+					<p class="matkul-par">
+						<h5><center>Mata Kuliah</center></h5> 
+						<p><center>Daftar Mata Kuliah untuk mengatur dan melihat mata kuliah yang tersedia. Anda juga dapat membuat mata kuliah baru di menu ini.</center></p>
+					</p>		
+		  			<form method="get" align="center " action="/addMatkul">
+		  				<input type="submit" value="Tambah" class=" btn bg-green"></input>
+		  			</form>
+		  		</div>
+		  		<div class="col-md-2"></div>
+	</div>
+	  <br></br><br></br><br></br><br></br>
+	
+	<div class="row">
+		  <div class="col-md-1">
+		  </div>
+		  <div class="col-md-10">
+		  		<div th:if="${flag_add == true}">
+					<div class="alert alert-success" th:text = "'Mata kuliah dengan kode ' + ${kode} + ' berhasil ditambahkan'">
+        			</div>
+        		</div>
+        		<div th:if="${flag_delete == true}">
+					<div class="alert alert-danger" th:text = "'Mata kuliah dengan kode ' + ${kode} + ' berhasil dihapus'">
+        			</div>
+        		</div>
+        		<div th:if="${flag_update == true}">
+					<div class="alert alert-info" th:text = "'Mata kuliah dengan kode ' + ${kode} + ' berhasil diubah'">
+        			</div>
+        		</div>
+				
+				<table class="table table-sm table-responsive" id="myTable">
+					<thead>
+					  <tr style="font-weight:bold;padding:5px">
+						<td>Kode</td>
+						<td>Nama</td>
+						<th class="text-center">Jumlah SKS</th>
+						<th class="text-center"></th>
+					</tr>
+					</thead>
+				<tbody>
+						<tr th:each="matakuliah,iterationStatus: ${matakuliahlist}">
+							<td th:text="${matakuliah.kode}"></td>
+							<td> <a th:text="${matakuliah.nama}" th:href="'/matkuldetail?kode_matkul=' + ${matakuliah.kode}"></a></td>
+							<td class="text-center" th:text="${matakuliah.jumlahSKS}"></td>
+							<td>
+								<a class="action" data-toggle="tooltip" th:href="'/editMatkul/' + ${matakuliah.kode}" title="Edit">
+									<i class="fa fa-pencil" ></i>
+								</a> | 
+								<a class="action" data-toggle="tooltip" th:href="'/deleteMatkul/' + ${matakuliah.kode}" title="Delete">
+									<i class="fa fa-remove" ></i>
+								</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+		  </div>
+		  <div class="col-md-1">
+		  </div>
+	  </div>
+	  </div>
+	 
+
+
+    <div th:replace="fragments/fragment :: footer"></div>
+  </body>
+</html>

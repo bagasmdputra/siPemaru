@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+	<head>
+  		<title th:text="${pagetitle}"></title>
+    	<div th:replace="fragments/fragment :: links"></div>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    	<meta charset="utf-8"/>
+    	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  	</head> 
+	
+	<body>
+	  <div th:replace="fragments/fragment :: header"></div>
+			<h4 class="home-title">SIAK FG - <span th:text="${kurikulum.nama}">Kurikulum Kerja</span> - <span th:text="${matkul.kode}">CS201878</span> <span th:text="${matkul.nama}">Kesenian Tanah Liat</span></h4>
+			<div class="navhome">
+				<a class="home-title1" th:href="@{/}">Home</a> >> <a class="home-title2" th:href="@{/kurikulum}">Kurikulum</a> >> <a class="home-title2" th:href="@{/kurikulum/detail(kode_kurikulum=${kurikulum.kode})}"><span th:text="${kurikulum.kode} + ' ' + ${kurikulum.nama}"></span></a> >> <a class="home-title2" ><span th:text="${matkul.nama}">Kesenian Tanah Liat</span></a>
+			</div>
+	  	
+		<div class="container top-buffer">
+	 	<div class="row justify-content-end"></div>
+	      <div class="row justify-content-center">
+	        	<div class="col-3">Kode</div>
+	        	<div class="col-3" th:text="${matkul.kode}">Kode</div>
+		    </div>
+		    <div class="row justify-content-center">
+	        	<div class="col-3">Nama</div>
+	        	<div class="col-3" th:text="${matkul.nama}">Nama</div>
+	        </div>
+	        
+		    <div class="row justify-content-center">
+	        	<div class="col-3">Jumlah SKS</div>
+	        	<div class="col-3" th:text="${matkul.jumlahSKS}">Tahun Terbit</div>
+	        </div>
+	        
+		    <div class="row justify-content-center">
+	        	<div class="col-3">Term</div>
+	        	<div class="col-3" th:text="${matkul.term}">Jumlah SKS Wajib</div>        
+	        </div>
+	        
+		    <div class="row justify-content-center">
+	        	<div class="col-3">Deskripsi</div>
+	        	<div class="col-3" th:text="${matkul.deskripsi}">Jumlah SKS Pilihan</div>
+	      	</div>
+	      	
+	      	<div class="row justify-content-center">
+	        	<div class="col-3">Prasyarat minimal SKS</div>
+	        	<div class="col-3">
+	        	<td>
+					<form action= "/updateMinimalSKS" method="post" >
+						<input type="hidden" name="kode" placeholder="" th:value="${kurikulum.kode}" required = "true" />
+						<input type="hidden" name="kode" placeholder="" th:value="${matkul.kode}" required = "true" />
+						<input type="text" class="form-control" name="sksPrasyarat" th:value="${matkul.sksPrasyarat}" /> 
+						<br/>
+						<input type="submit" value="Update" class=" btn bg-green"></input>
+					</form>
+				</td>
+				</div>
+	      	</div>
+	
+	
+		<br/>
+	  
+		<div class="row">
+	  		<div class="col-sm-1"></div>
+	  		<div class="col-sm-10">
+				<br/>
+					<h5> Prasyarat Mengambil Mata Kuliah </h5> <br/>
+					<table>
+						<tr th:each="matkulPrasyarat,iterationStatus: ${listMatkulPrasyarat}">
+							<td th:text="${matkulPrasyarat.kode} + ' - ' + ${matkulPrasyarat.nama}"></td>
+							<td>
+							<a class="action" data-toggle="tooltip" th:href="'/deletePrasyarat/' + ${prasyarat.kodeKurikulum} + '/' + ${prasyarat.kodeMatkul} + '/' + ${matkulPrasyarat.kode}" title="Delete">
+								<i class="fa fa-remove" ></i>
+							</a>
+							</td>
+						</tr>
+					</table>
+			  <br/><br/>
+			  	<h5> Tambah Prasyarat </h5>
+			  	<form action="/addPrasyarat" th:object="${prasyarat}" method="post">
+			  		<input type="hidden" name="kodeKurikulum" placeholder="" th:value="${kodeKurikulum}" th:field="*{kodeKurikulum}" required = "true" />
+			  		
+			  		<input type="hidden" name="kodeMatkul" placeholder="" th:value="${kodeMatkul}" th:field="*{kodeMatkul}" required = "true" />
+
+					<select class="form-control" name="kodeMatkulPrasyarat" th:field="*{kodeMatkulPrasyarat}" required="required">
+						<option value=""> Pilih Mata Kuliah</option>
+						<option th:value="${matkulPrasyaratBaru.kode}" th:each="matkulPrasyaratBaru,iterationStatus: ${listMatkul}" th:text="${matkulPrasyaratBaru.kode} + ' - ' + ${matkulPrasyaratBaru.nama}"> </option>
+						
+					</select>
+					<br/>
+					<div >
+		  				<input type="submit" value="Simpan" class=" btn bg-green"></input>
+		  			</div>
+	  			</form>	
+		  	</div>
+		</div>
+ 	</div>
+
+	<div th:replace="fragments/fragment :: footer"></div>
+  </body>
+</html>

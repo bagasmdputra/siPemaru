@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+	<head>
+  		<title th:text="${pagetitle}"></title>
+    		<div th:replace="fragments/fragment :: links"></div>
+			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    		<meta charset="utf-8"/>
+    		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+	    	<!-- Bootstrap CSS -->
+	    	<link rel="stylesheet" href="css/bootstrap.min.css"/>
+		    <link rel="stylesheet" href="css/style.css"/>
+		    <link rel="stylesheet" href="css/font-awesome.css"/>
+			<link rel="stylesheet" href="css/jquery.dataTables.min.css"/> 
+	</head>  
+  
+	<body>
+  		<div th:replace="fragments/fragment :: header"></div>
+  		
+    	<h4 class="home-title">SIAK FG - Kurikulum</h4>
+    	<div class="navhome">
+			<a class="home-title1" th:href="@{/}">Home</a> >> <a th:href="@{/kurikulum}">Kurikulum</a> >> <a>Tambah Kurikulum</a> 
+		</div>
+		
+		<div class="container top-buffer">
+		<div class="row">
+        <main class="col-sm-12" role="main">
+			<div class="form">
+				<h4 align="center">Tambah Kurikulum</h4>
+		  		<form class="inputAction add top-buffer" method="post" th:action="'/kurikulum/add'" th:object="${kurikulum}">
+					<label for="inputNama">Inisial</label>
+					<p><small>Inisial terdiri dari 3 huruf dan digunakan sebagai pengkodean dalam kurikulum</small></p>
+					<input align="center" type="text" class="form-control" name="kode" required="true" minlength="3" maxlength="3" placeholder="e.g. RRA, CSI, ..."></input><br/>
+					
+					<label for="inputNama">Nama</label>
+					<p><small>Standar penulisan kurikulum diawali dengan kata 'Kurikulum'</small></p>
+					<input align="center" type="text" class="form-control" name="nama" required="true" placeholder="e.g. Kurikulum Business Inteligent, Kurikulum Pengembangan Notaris, ..."></input><br/>
+
+					<input align="center" type="text" class="form-control" name="tahun" required="true" th:value="${#dates.year(#dates.createNow())}" hidden="hidden" th:field="*{tahun}"></input><br/>					
+	  				<input type="submit" value="Tambah" class="btn bg-green btn-sm"></input>
+				</form>
+			</div>
+		</main>
+		</div>
+	  	 	
+		</div>
+	 	<div th:replace="fragments/fragment :: footer"></div>
+
+<!-- Optional JavaScript -->
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.dataTables.min.js"></script>
+<script>
+	$(document).ready( function () {
+		$('#myTable').DataTable();
+	    $('#myTable2').DataTable();
+		} );
+</script>
+	</body>
+</html>

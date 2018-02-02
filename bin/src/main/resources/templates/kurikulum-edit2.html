@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+  <head>
+  	<title th:text="${pagetitle}"></title>
+    	<div th:replace="fragments/fragment :: links"></div>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    	<meta charset="utf-8"/>
+    	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+
+    	<!-- Bootstrap CSS -->
+    	<link rel="stylesheet" href="css/bootstrap.min.css"/>
+	    <link rel="stylesheet" href="css/style.css"/>
+	    <link rel="stylesheet" href="css/font-awesome.css"/>
+		<link rel="stylesheet" href="css/jquery.dataTables.min.css"/> 
+  </head>  
+  
+  <body>
+  <div th:replace="fragments/fragment :: header"></div>
+    <h4 class="home-title" th:text="'SIAK FG - ' + ${kurikulum.nama}">SIAK FG - </h4> 
+	<a class="home-title1" href="/" th:text="Home">Home</a> >> <a class="home-title2" href="/kurikulum">Kurikulum</a> >> <a class="home-title3" th:text="${kurikulum.nama}">Apaan</a>
+	
+	 <h4><center>Kurikulum berhasil diubah!</center></h4> <br/>
+	<div class="container">
+	<div class="row">
+		  <div class="col-md-4"></div>
+		  <div class="col-lg-2">
+                <p>Kode</p>
+                <p>Nama</p>
+                <p>Tahun Terbit</p>
+                <p>Jumlah SKS Wajib</p>
+                <p>Jumlah SKS Pilihan</p>
+                <br/><br/><br/>
+           </div>
+            
+           <div class="col-lg-3">
+                <p th:text="${kurikulum.kode}">Kode</p>
+                <p th:text="${kurikulum.nama}">Nama</p>
+                <p th:text="${kurikulum.tahun}">Tahun Terbit</p>
+                <p th:text="${kurikulum.sksWajib}">Jumlah SKS Wajib</p>
+                <p th:text="${kurikulum.sksPilihan}">Jumlah SKS Pilihan</p>
+                
+                <br/><br/><br/>
+            </div>
+		  
+		  <div class="col-md-2">
+		  </div>
+		  
+	</div>
+	<h5 th:text="'Pilih Mata Kuliah untuk ' + ${kurikulum.nama}"></h5> <br/>
+	<div class="form">
+		  		<form class="inputAction add" method="post" th:action="@{/kurikulum/detail}" th:object="${kurikulum}">
+		  		
+		  			<div class="form-group">
+		                <select class="form-control" name="pilihmatkul" id="pilihmatkul"  required="false" th:field="*{kode_matkul}">
+		                	<option value="" th:disabled="disabled" th:selected="selected">Pilih Mata Kuliah</option>
+			        		<option th:each="matkul : ${matkuls}" th:value="${matkul.kode}" th:text="${matkul.nama}"> b</option>
+		                </select>
+		            </div>
+		            <br/>
+		            <div class="form-group">
+		                <select class="form-control" name="term" id="term" required="false" th:field="*{term}">
+		                	<option value="" th:disabled="disabled" th:selected="selected">Pilih Term</option>
+			        		<option value="1">1</option>
+        					<option value="2">2</option>
+        					<option value="2">3</option>
+        					<option value="2">4</option>
+        					<option value="2">5</option>
+        					<option value="2">6</option>
+        					<option value="2">7</option>
+        					<option value="2">8</option>
+		                </select>
+		            </div>
+		            <br/>
+		            <div class="form-group">
+		            	<label>Jumlah SKS Prasyarat</label>
+					<input align="center" type="number" class="form-control" name="nama" ></input><br/>
+		            </div>
+		            <div class="form-group">
+		                <select class="form-control" name="matkul" id="matkul" required="true" th:field="*{isWajib}">
+		                	<option value="" th:disabled="disabled" th:selected="selected">Pilih Jenis Mata Kuliah</option>
+			        		<option value="1">Mata Kuliah Wajib</option>
+        					<option value="2">Mata Kuliah Pilihan</option>
+		                </select>
+		            </div>>
+					<p></p>
+	  				<!-- <center><input type="submit" value="Tambah Mata Kuliah" class="edit-btn"></input></center>  -->
+	  				<center><input type="hidden" name="edit_matkul"></input></center>
+					<button type="submit" class="edit-btn">Simpan</button>
+				</form>
+				<br/>
+			<center><input type="submit" value="Skip" class="delete-btn"></input></center>
+			
+			<br/> <br/>
+			
+	</div>
+		  
+	
+	</div>
+	 <div th:replace="fragments/fragment :: footer"></div>
+<style>
+.logo-navbar{
+width: 127px;
+height: 50px;
+top: 0px;
+}
+
+.logo-rectangle{
+position: absolute;
+width: 67.06px;
+height: 50px;
+left: 31px;
+top: 0px;
+
+background: linear-gradient(306.71deg, #F77062 0%, #FE5196 100%);
+}
+
+/* SIAK FG - Kurikulum */
+.home-title{
+margin-left: 25px;
+font-family: Inter UI;
+font-style: normal;
+font-weight: bold;
+line-height: 47px;
+font-size: 32px;
+
+color: #333333;
+}
+
+/* Home */
+.home-title1{
+margin-left: 25px;
+font-family: Inter UI;
+font-style: normal;
+font-weight: normal;
+line-height: 24px;
+font-size: 16px;
+
+color: #333333;
+}
+
+/* Home */
+.home-title2{
+font-family: Inter UI;
+font-style: normal;
+font-weight: normal;
+line-height: 24px;
+font-size: 16px;
+
+color: #333333;
+}
+
+/* Home */
+.home-title3{
+font-family: Inter UI;
+font-style: normal;
+font-weight: normal;
+line-height: 24px;
+font-size: 16px;
+
+color: #333333;
+}
+
+/* Mata Kuliah */
+.matkul-par {
+position: absolute;
+width: 750px;
+height: 95px;
+top: 60px;
+
+font-family: Inter UI;
+font-style: normal;
+font-weight: normal;
+line-height: 24px;
+font-size: 16px;
+text-align: justify;
+
+color: #000000;
+}
+
+/* Rectangle 3 */
+.edit-btn{
+
+width: 160px;
+height: 30px;
+left: 10px;
+top: 220px;
+
+background: #00E3AE;
+}
+
+/* Rectangle 3 */
+.delete-btn {
+width: 120px;
+height: 30px;
+left: 160px;
+top: 220px;
+
+background: #FE5196;
+}
+
+/* Rectangle 3 */
+.add-btn {
+width: 150px;
+height: 30px;
+left: 160px;
+top: 220px;
+
+background: #FE5196;
+}
+
+.table-kurikulum {
+position: absolute;
+top: 50px;
+}
+
+.action{
+color: #3399ff;
+}
+
+table, tr, td {
+	background-color: white;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+	 </style>
+
+    <!-- Optional JavaScript -->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.dataTables.min.js"></script>
+	<script>
+		
+	</script>
+  </body>
+</html>

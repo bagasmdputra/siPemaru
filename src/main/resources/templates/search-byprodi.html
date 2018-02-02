@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	    <!-- Required meta tags -->
+	    <meta charset="utf-8"/>
+	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+		
+
+	    <div th:replace="fragments/fragment :: links"></div>
+	    
+		
+	</head>
+	
+	<body>
+		<div th:replace="fragments/fragment :: header"></div>
+		<div th:if="${datanotfound == null}">
+			<h4 class="home-title" th:text="${'SIAK FG - '+ universitas.nama_univ + ' - ' + prodi.nama_prodi}">SIAK FG - Nama Prodi - Nama Universitas</h4>
+			<div class="navhome">
+				<a class="home-title1" th:href="@{/home}">Home</a> >> <a class="home-title2" th:href="@{/kurikulum}">Kurikulum</a> >> <a th:href="@{/kurikulumByProdi(univ=${universitas.id_univ})}" th:text="${universitas.nama_univ}" class="home-title3">Nama prodi</a> >> <a th:text="${prodi.nama_prodi}" class="home-title4">Nama universitas</a>
+			</div>
+			
+			<div th:class="container">
+				<div class="row top-buffer">
+					<div class="col-sm-4 mx-auto">
+						<div class="mx-auto text-center">
+							<p align="center" class="kurikulum-prodi-par">
+								<strong>
+									<h4 th:if="${datanotfound==null}">Angkatan Aktif</h4>	
+								</strong>
+							</p>
+							 
+						</div>
+						
+						<table class="table table-responsive">
+						  <tbody>
+						    <tr align="center" th:each="ang : ${angkatan}">
+					
+						      <td th:text="${ang.tahun_masuk}">Mark</td>
+						      <td ><a th:href="@{/kurikulum/detail(kode_kurikulum=${ang.kode_kurikulum})}" th:text="${ang.kode_kurikulum}">Otto</a></td>
+						    </tr>
+						   
+						  </tbody>
+						</table>
+					</div>
+				</div>
+			 </div>
+		</div>
+		<div th:unless="${datanotfound == null}">
+		</div>
+	</body>
+</html>

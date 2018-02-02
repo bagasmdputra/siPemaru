@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title th:text="${pagetitle}"></title>
+    <div th:replace="fragments/fragment :: links"></div>
+  </head>
+  <body>
+       <div th:replace="fragments/fragment :: header"></div>
+
+	<h4 class="home-title">SIAK FG - Mata Kuliah</h4>
+	<a class="home-title1" href="homepage.html">Home</a> >> <a class="home-title2" href="matakuliah.html">Mata Kuliah</a> >> <a class="home-title2" href="addMatkul.html">Tambah Mata Kuliah</a>
+
+
+    <div class="container">
+      <div class="row">
+        <main class="col-sm-12" role="main">
+        
+        <br></br>
+        <h1>Tambah Mata Kuliah</h1>
+        <div th:if="${flag_error == true}">
+			<div class="alert alert-danger" th:text = "'Terjadi kesalahan dalam pengisian form'">
+        	</div>
+        </div>
+          <form action="/addMatkul" method="post">
+			  <div class="form-group">
+			    <label for="inputNama">Nama</label>
+			    <input name="nama" type="text" class="form-control" id="inputNama" />
+			  </div>
+			  <div class="form-group">
+			    <label for="inputNama">Jumlah SKS</label>
+			    <input name="jumlah_sks" type="number" class="form-control" id="inputNama" value="0"/>
+			  </div>
+			  <div class="form-group">
+			    <label for="inputNama">Deskripsi</label>
+			    <input name="deskripsi" type="text" class="form-control" id="inputNama" />
+			  </div>
+			  <button class="btn btn-primary btn-submit">Submit</button>
+		  </form>
+
+          
+        </main>
+      </div>
+    </div>
+
+
+    <div th:replace="fragments/fragment :: footer"></div>
+    <style>
+	.logo-navbar{
+width: 127px;
+height: 50px;
+top: 0px;
+}
+
+
+.logo-rectangle{
+position: absolute;
+width: 67.06px;
+height: 50px;
+left: 31px;
+top: 0px;
+
+background: linear-gradient(306.71deg, #F77062 0%, #FE5196 100%);
+}
+
+.logo-text{
+position: absolute;
+width: 113.59px;
+height: 29.69px;
+left: 44.41px;
+top: 10.16px;
+
+font-family: Inter UI;
+font-style: italic;
+font-weight: 900;
+line-height: normal;
+font-size: 25px;
+letter-spacing: -0.05em;
+
+color: #FAFAFA;
+}
+
+.navigasi {
+height: 50px;
+}
+
+/* SIAK FG - Kurikulum */
+.home-title{
+margin-left: 25px;
+font-family: Inter UI;
+font-style: normal;
+font-weight: bold;
+line-height: 47px;
+font-size: 32px;
+
+color: #333333;
+}
+
+/* Home */
+.home-title1{
+margin-left: 25px;
+font-family: Inter UI;
+font-style: normal;
+font-weight: normal;
+line-height: 24px;
+font-size: 16px;
+
+color: #333333;
+}
+
+/* Home */
+.home-title2{
+font-family: Inter UI;
+font-style: normal;
+font-weight: normal;
+line-height: 24px;
+font-size: 16px;
+
+color: #333333;
+}
+
+/* Mata Kuliah */
+.matkul-par {
+position: absolute;
+width: 750px;
+height: 95px;
+top: 60px;
+
+font-family: Inter UI;
+font-style: normal;
+font-weight: normal;
+line-height: 24px;
+font-size: 16px;
+text-align: justify;
+
+color: #000000;
+}
+
+/* Rectangle 3 */
+.tambah-btn{
+position: absolute;
+width: 120px;
+height: 30px;
+left: 300px;
+top: 160px;
+
+background: #00E3AE;
+}
+
+.table-matkul {
+top: 480px;
+}
+
+/* Delete */
+.delete-btn {
+width: 120px;
+height: 11.05px;
+left: 1159px;
+top: 315.1px;
+
+font-family: Inter UI;
+font-style: normal;
+font-weight: normal;
+line-height: normal;
+font-size: 16px;
+text-align: center;
+
+color: #333333;
+}
+
+/* Rectangle 3 */
+.delete-btn {
+width: 95px;
+height: 25px;
+left: 630px;
+top: 100px;
+
+background: #FE5196;
+}
+
+/* Rectangle 3 */
+.save-btn{
+position: absolute;
+width: 95px;
+height: 25px;
+left: 710px;
+top: 92px;
+
+background: #00E3AE;
+}
+
+/* Simpan */
+.save-btn{
+font-family: Inter UI;
+font-style: normal;
+font-weight: normal;
+line-height: normal;
+font-size: 16px;
+text-align: center;
+
+color: #333333;
+}
+
+table, tr, td {
+border-top: none !important;
+	border-bottom: 2px inset black;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.btn-submit {
+position: absolute;
+width: 95px;
+height: 30px;
+background: #00E3AE;
+font-family: Inter UI;
+font-style: normal;
+font-weight: normal;
+line-height: normal;
+font-size: 16px;
+text-align: center;
+
+color: #333333;
+}
+
+	 </style>
+  </body>
+</html>

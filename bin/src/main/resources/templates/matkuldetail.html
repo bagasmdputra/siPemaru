@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <div th:replace="fragments/fragment :: links"></div>
+  </head>
+  <body>
+      <div th:replace="fragments/fragment :: header"></div>
+
+<h4 class="home-title">SIAK FG - <span th:text="${matakuliah.nama}"></span></h4>
+<div class="navhome">	
+	<a class="home-title1" th:href="@{/}">Home</a> >> <a class="home-title2" th:href="@{/matakuliah}">Mata Kuliah</a> >> <a class="home-title2"><span th:text="${matakuliah.kode + ' - ' + matakuliah.nama}"></span></a>
+</div>
+	<div class="container">
+	  <div class="row">
+	  <div class="col-sm-1">
+	  </div>
+	  <div class="col-sm-10">
+	  <br></br><br></br><br></br>
+	  <p class="nama-matkul">
+	  <b> <span th:text="${matakuliah.nama}"></span> </b>
+	  </p>
+	  <br></br>
+	  
+	  <table class="table table-matkul" style="width:100%;">
+                <thead>
+                  <tr style="font-weight:bold;padding:5px;">
+	          		<td>Kode</td>
+	          		<td>Nama</td>
+	          		<td style="text-align: center;">Jumlah SKS</td>
+					<td style="text-align: center;">Deskripsi</td>
+	          		<td colspan="2" style="text-align: center;">Aksi</td>
+					</tr>
+                </thead>
+                
+                <tbody>
+                	<tr>
+							<td th:text="${matakuliah.kode}"></td>
+							<td th:text="${matakuliah.nama}"></td>
+							<td th:text="${matakuliah.jumlahSKS}" style="text-align: center;"></td>
+							<td th:text="${matakuliah.deskripsi}" style="text-align: center;"></td>
+							<td><a class="action" th:href="'/editMatkul/' + ${matakuliah.kode}"><button type="button" class="edit-btn">Edit</button></a></td>
+							<td><a class="action" th:href="'/deleteMatkul/' + ${matakuliah.kode}"><button type="button" class="delete-btn">Delete</button></a></td>
+					</tr>
+					
+                </tbody>
+        	</table>
+
+	  </div>
+	  <div class="col-sm-1">
+	  </div>
+	  </div>
+	  
+	 
+	  
+ </div>
+
+	<div th:replace="fragments/fragment :: footer"></div>
+	<style>
+/* SIAK FG - Kurikulum */
+.home-title{
+margin-left: 25px;
+font-family: Inter UI;
+font-style: normal;
+font-weight: bold;
+line-height: 47px;
+font-size: 32px;
+
+color: #333333;
+}
+.navhome{
+	margin-left: 25px;
+}
+
+
+/* Mata Kuliah */
+.matkul-par {
+position: absolute;
+width: 750px;
+height: 95px;
+top: 60px;
+
+font-family: Inter UI;
+font-style: normal;
+font-weight: normal;
+line-height: 24px;
+font-size: 16px;
+text-align: justify;
+
+color: #000000;
+}
+
+/* Rectangle 3 */
+.tambah-btn{
+position: absolute;
+width: 120px;
+height: 30px;
+left: 300px;
+top: 160px;
+
+background: #00E3AE;
+}
+
+.table-matkul {
+top: 480px;
+}
+
+/* Rectangle 3 */
+.edit-btn{
+width: 80px;
+height: 25px;
+margin-right:0px;
+background: #00E3AE;
+}
+
+/* Edit */
+.edit-btn{
+font-family: Inter UI;
+font-style: normal;
+font-weight: normal;
+line-height: normal;
+font-size: 16px;
+text-align: center;
+
+color: #333333;
+}
+
+
+/* Delete */
+.delete-btn {
+width: 120px;
+height: 11.05px;
+left: 1159px;
+top: 315.1px;
+
+font-family: Inter UI;
+font-style: normal;
+font-weight: normal;
+line-height: normal;
+font-size: 16px;
+text-align: center;
+
+color: #333333;
+}
+
+/* Rectangle 3 */
+.delete-btn {
+width: 80px;
+height: 25px;
+left: 530px;
+top: 100px;
+
+background: #FE5196;
+}
+
+table, tr, td, th {
+	border-top: none !important;
+	border-bottom: 2px inset black;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+	 </style>
+  </body>
+</html>

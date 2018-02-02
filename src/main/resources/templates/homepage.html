@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <div th:replace="fragments/fragment :: links"></div>
+  </head>
+  <body>
+      <div th:replace="fragments/fragment :: header"></div>
+
+<h4 class="home-title">SIAK FG - Kurikulum</h4>
+<div class="navhome">
+	<a >Home</a>
+</div>	
+<div class="container">
+	  <div class="row justify-content-end">
+		<div class="col-5">
+		  <p class="par">
+		  <b> Kurikulum </b> <br></br>
+			Daftar kurikulum yang bisa Anda gunakan dan Anda buat. Anda memiliki akses untuk mengubah bahkan menghapus data. Seluruh pengaturan kurikulum termasuk assign mata kuliah ke dalan suatu kurikulum dan mengatur prasyarat ada dalam menu ini.
+		  </p>
+		  <form class="container text-center" method="get" action="/kurikulum">
+		  	<input type="submit" value="Kurikulum" class="btn bg-green btn-sm"></input>
+		  </form>
+		</div>
+
+		<div class="col-5">
+		  <p class="par">
+		  <b> Mata Kuliah </b> <br></br>
+		  Daftar Mata Kuliah untuk mengatur dan melihat mata kuliah yang tersedua. Anda juga dapat membuat mata kuliah baru di menu ini.
+			</p>
+		<form class="bottom container text-center" id="myform" method="get" action="/matakuliah">
+			<input type="submit" value="Mata Kuliah" class="btn bg-green btn-sm"></input>
+		 </form>
+		</div>
+	  </div>
+	  <div class="row top-buffer">
+	  <div class="col-md-6 mx-auto">
+		
+		
+		<p class="par">
+		<b> Kurikulum berdasarkan Prodi </b> <br></br>
+		Gunakan tombol search di bawah ini untuk mendapatkan informasi kurikulum berdasarkan prodi yang akan menampilkan daftar kurikulum untuk setiap angkatan aktif dalam program studi yang Anda pilih. Pilih Universitas terlebih dahulu, pilih prodi yang ingin Anda ketahui kurikulumnya, kemudian tekan tombol search untuk melanjutkan
+		</p>
+		
+		<form class="container" id="myform" th:action="@{/angkatanaktif}">
+		<div class="row justify-content-center">
+			<div class="col-sm-8  pr-0 mr-0">
+			<select th:field="*{universitas}" id="universitasDropdown" name="id_universitas" class="form-control form-control-sm bc-green text-right"
+									>
+									<option th:if="${ univSelected == null}" hidden="hidden" value="">Pilih Universitas</option>
+									<option th:each="universitas : ${listUniv}" 
+										th:selected="${univSelected != null? universitas.id_univ == univSelected.id_univ : 0}"
+										th:value="${universitas.id_univ}"
+										th:text="${universitas.nama_univ}">Universitas</option>
+							</select>
+							
+			
+			</div>
+			<div class="col-sm-4 pl-0">
+				<input id="cariProdi" type="submit" value="cari" class="btn bg-green btn-sm ml-0"></input>
+			</div>
+		</div>
+		</form>
+		
+		</div>
+
+	</div>
+ </div>
+
+<div th:replace="fragments/fragment :: footer"></div>
+	 
+	 <script type="text/javascript">
+	 
+  		$("#cariProdi").click(function (event) {
+
+		event.preventDefault();
+				var univ = $('#universitasDropdown').find(":selected").val();
+				if (univ == ""){
+					alert("WARNING! \n Anda belum memilih universitas!");
+				}else{
+ 		         window.location = '/kurikulumByProdi?univ=' + univ;
+ 			  }
+		});
+	
+				
+		
+
+	</script>
+  </body>
+</html>

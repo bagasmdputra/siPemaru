@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Fragment</title>
+		
+		<div th:fragment="links"> 
+			<title th:text="${pagetitle}"></title>
+			<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"></link>
+			<link rel="stylesheet" type="text/css" th:href="@{/css/datatables.min.css}"></link>		
+        	
+			<link rel="stylesheet" th:href="@{/css/style.css}"></link>
+			<link rel="stylesheet" th:href="@{/css/font-awesome.min.css}"></link>
+			
+			<script th:src="@{/js/jquery-3.2.1.min.js}"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+		    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		    
+		    <script th:src="@{/js/bootstrap.min.js}"></script>
+			
+		</div>
+	</head>
+	
+	<body>
+		<div th:fragment="header">
+					
+					<nav class="navbar navbar-expand-lg navbar-dark bg-dark  fixed-top navigation">
+					<a class="navbar-brand" href="#">
+							<div class="logo-navbar">
+								<div class="logo-rectangle">
+								</div>
+								<p class="logo-text">Kurikulum</p>
+							</div>
+					</a>
+				         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+						    <span class="navbar-toggler-icon"></span>
+						  </button>   
+						
+					
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					
+					<ul class="navbar-nav mr-auto">
+					   <li class="nav-item">
+						<a class="nav-link" th:href="@{/}">Home</a>
+					  </li>
+					  <li class="nav-item">
+						<a class="nav-link" th:href="@{/kurikulum}">Kurikulum</a>
+					  </li>
+					  <li class="nav-item">
+						<a class="nav-link" th:href="@{/matakuliah}">Mata Kuliah</a>
+					  </li>
+					</ul>
+					
+					
+					<form th:action="@{/logout}" class="form-inline my-2 my-lg-0"  method="post">
+								<input class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Sign Out"/>
+							</form>
+					
+		  	
+				</div>
+			</nav>
+	
+
+		<div id="messages" th:with="notifyMessages=${session[T(com.kurikulum.service.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY]}" >
+				<div th:each="msg : ${notifyMessages}" th:class="${'alert alert-'+#strings.toLowerCase(msg.type)}">
+						<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+						
+  						<div th:text="${msg.text}"> 
+  							<strong>Success!</strong> Indicates a successful or positive action.
+  						</div>
+  						<span th:if="${notifyMessages}" th:remove="all" th:text="${session.remove(T(com.kurikulum.service.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY)}"></span>
+        		</div>
+		</div>
+
+		</div>
+					
+		<div th:fragment="body"></div>
+		<div th:fragment="footer">
+	
+			<script th:src="@{/js/jquery.dataTables.min.js}"></script>
+			<script th:src="@{/js/bootstrap-confirmation.js}"></script>
+			<script th:src="@{/js/bootbox.min.js}"></script>
+			
+			
+			<script>
+
+				
+				$(document).ready( function () {
+			    	$('#myTable').DataTable();
+
+			    	$('#myTable2').DataTable();
+				} );
+				
+				$(function() {
+				    $('#messages div').click(function() {
+				        $(this).fadeOut();
+				    });
+				    setTimeout(function() {
+				        $('#messages li.info').fadeOut();
+				    }, 3000);
+				});
+				
+
+			</script></div>
+		
+	</body>
+</html>

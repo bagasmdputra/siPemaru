@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	    <!-- Required meta tags -->
+	    <meta charset="utf-8"/>
+	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+		
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+	    
+	    <div th:replace="fragments/fragment :: links"></div>
+	    
+		<style>
+			/* SIAK FG - Kurikulum */
+			.home-title{
+				margin-left: 25px;
+				font-family: Inter UI;
+				font-style: normal;
+				font-weight: bold;
+				line-height: 47px;
+				font-size: 32px;
+				color: #333333;
+			}
+			
+			/* Kurikulum berdasarkan Prodi */
+			.kurikulum-prodi-par{
+				position: absolute;
+				width: 750px;
+				height: 140px;
+				top: 380px;
+				
+				font-family: Inter UI;
+				font-style: normal;
+				font-weight: normal;
+				line-height: 24px;
+				font-size: 16px;
+				text-align: justify;
+				
+				color: #000000;
+			}
+			
+			.navhome{
+				margin-left: 25px;
+			}
+			
+			.listAktif{
+				margin-top: 25px;
+				margin-bottom: 25px;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<div th:replace="fragments/fragment :: header"></div>
+		<div th:if="${datanotfound == null}">
+			<h4 class="home-title" th:text="${'SIAK FG - '+ universitas.nama_univ + ' - ' + prodi.nama_prodi}">SIAK FG - Nama Prodi - Nama Universitas</h4>
+			<div class="navhome">
+				<a class="home-title1" th:href="@{/home}">Home</a> >> <a class="home-title2" th:href="@{/kurikulum}">Kurikulum</a> >> <a th:href="@{/kurikulumByProdi(univ=${universitas.id_univ})}" th:text="${universitas.nama_univ}" class="home-title3">Nama prodi</a> >> <a th:text="${prodi.nama_prodi}" class="home-title4">Nama universitas</a>
+			</div>
+			
+			<div th:class="container">
+				<div class="row">
+					<div class="col-sm-4"></div>
+					<div class="col-sm-8">
+						<div class="listAktif">
+							<p class="kurikulum-prodi-par">
+								<strong><h4>Angkatan Aktif</h4></strong>
+							</p>
+						</div>
+						<div class="container fluid">
+					        <div class="row">
+					        	<div class="col-lg-4">
+					           		<h6 th:each="ang : ${angkatan}" th:text="${ang.tahun}" class="bold">2012</h6>
+	
+					            </div>
+					
+					            <div class="col-lg-4" >
+					                <h6 th:each="ang : ${angkatan}" th:text="${ang.kurikulum}">KTSP</h6>
+					                
+					            </div>
+					    	</div>
+				    	</div>
+					</div>
+				</div>
+			 </div>
+		</div>
+		<div th:unless="${datanotfound == null}">
+		</div>
+    	<!-- Optional JavaScript -->
+	    <script src="js/jquery-3.2.1.slim.min.js"></script>
+	    <script src="js/bootstrap.min.js"></script>
+	</body>
+</html>

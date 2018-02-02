@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+  <head>
+  	<title th:text="${pagetitle}"></title>
+    	<div th:replace="fragments/fragment :: links"></div>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    	<meta charset="utf-8"/>
+    	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  </head>  
+  
+  <body>
+  <div th:replace="fragments/fragment :: header"></div>
+	<h4 class="home-title" th:text="'SIAK FG - ' + ${kurikulum.nama}">SIAK FG - </h4> 
+    <div class="navhome">
+		<a class="home-title1" th:href="@{/}">Home</a> >> <a th:href="@{/kurikulum}">Kurikulum</a> >> <a th:href="@{/kurikulum/detail(kode_kurikulum=${kurikulum.kode})}" th:text="${kurikulum.nama}">Kurikulum</a> >> <a>Detail Kurikulum</a>
+	</div>
+	
+	<div class="container top-buffer">
+	 	<div class="row justify-content-end">
+  		<a th:if="${isOwned==true}" id="deletepermanen"
+  		data-toggle="confirmation" data-title="Apakah Anda yakin?" data-popout="true" data-placement="bottom"
+  		class="action" th:href="'/kurikulum/deletepermanent/' + ${kurikulum.kode}"><button type="button" class="btn btn-danger">Permanent Delete</button></a>
+	    </div>
+	      <div class="row justify-content-center">
+	        	<div class="col-3">Kode</div>
+	        	<div class="col-3" th:text="${kurikulum.kode}">Kode</div>
+		    </div>
+		    <div class="row justify-content-center">
+	        	<div class="col-3">Nama</div>
+	        	<div class="col-3" th:text="${kurikulum.nama}">Nama</div>
+	        </div>
+	        
+		    <div class="row justify-content-center">
+	        	<div class="col-3">Tahun Terbit</div>
+	        	<div class="col-3" th:text="${kurikulum.tahun}">Tahun Terbit</div>
+	        </div>
+	        
+		    <div class="row justify-content-center">
+	        	<div class="col-3">Jumlah SKS Wajib</div>
+	        	<div class="col-3" th:text="${kurikulum.sksWajib}">Jumlah SKS Wajib</div>        
+	        </div>
+	        
+		    <div class="row justify-content-center">
+	        	<div class="col-3">Jumlah SKS Pilihan</div>
+	        	<div class="col-3" th:text="${kurikulum.sksPilihan}">Jumlah SKS Pilihan</div>
+	      	</div>
+	    
+
+	<div th:if="${isOwned==true}" class="row top-buffer">
+	<div class="col" align="right">
+                <form method="get" action="/kurikulum/edit">
+                	<input type="hidden" th:value="${kurikulum.kode}" name="kode_kurikulum"/>
+                	<button id="editkur" type="submit" class="btn  btn-sm">Edit Kurikulum</button>
+                </form>
+                <br/><br/><br/>
+    </div>
+    
+    <div class="col ">      
+                <form method="get" action="/kurikulum/add/matkul">
+                	<input type="hidden" th:value="${kurikulum.kode}" name="kode_kurikulum"/>
+                	<button type="submit" class="btn bg-green btn-sm">Add Mata Kuliah</button>
+                </form>
+                <br/><br/><br/> 
+			</div>
+	</div>
+		
+        
+	<div th:if="${isOwned==null}" class="row top-buffer">
+		<div class="col" align="center">
+		              <form method="get" th:action="'/kurikulum/addToProdi/' + ${kurikulum.kode}">
+	                	<input type="hidden" th:value="${kurikulum.kode}" name="kode_kurikulum"/>
+	                	<button type="submit" class="btn bg-green btn-sm">Tambahkan</button>
+	                </form>
+	                <br/><br/><br/> 
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+		  	<h5>Mata Kuliah Wajib</h5> <br/>
+				<table class="table table-responsive table-sm" id="myTable">
+					<thead>
+					  <tr style="font-weight:bold;padding:5px">
+						<td>Kode</td>
+						<td>Nama</td>
+						<th class="text-center">Jumlah SKS</th>
+						<td th:if="${isOwned==true}"></td>
+					</tr>
+					</thead>
+					<tbody>
+						<tr th:each="matakuliah,iterationStatus: ${listMatkulWajib}">
+							<td th:text="${matakuliah.kode}"></td>
+						<td th:if="${isOwned==true}">
+								<a class="action" th:href="'/matkul/edit/'+ ${kurikulum.kode}+'/'+ ${matakuliah.kode}" th:text="${matakuliah.nama}"></a>
+							</td>
+							<td th:if="${isOwned==null}" th:text="${matakuliah.nama}"></td>
+							<td class="text-center" th:text="${matakuliah.jumlahSKS}"></td>
+							<td th:if="${isOwned==true}">
+								<a class="action" data-toggle="tooltip" th:href="'/kurikulum/matkuldelete/' + ${kurikulum.kode} +'/'+ ${matakuliah.kode}" title="Delete">
+									<i class="fa fa-remove" ></i></a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+		</div>
+		  <div class="col-md-6">
+		  		<h5>Mata Kuliah Pilihan</h5> <br/>
+				<table class="table table-responsive table-sm" id="myTable2">
+					<thead>
+					  <tr style="font-weight:bold;padding:5px">
+						<td>Kode</td>
+						<td>Nama</td>
+						<th class="text-center">Jumlah SKS</th>
+						<td th:if="${isOwned==true}"></td>
+					</tr>
+					</thead>
+					<tbody>
+						<tr th:each="matakuliah,iterationStatus: ${listMatkulPilihan}">
+						<td th:text="${matakuliah.kode}"></td>
+							<td th:if="${isOwned==true}">
+								<a class="action" th:href="'/matkul/edit/'+ ${kurikulum.kode}+'/'+ ${matakuliah.kode}" th:text="${matakuliah.nama}"></a>
+							</td>
+							<td th:if="${isOwned==null}" th:text="${matakuliah.nama}"></td>
+							<td class="text-center" th:text="${matakuliah.jumlahSKS}"></td>
+							<td th:if="${isOwned==true}">
+								<a class="action" data-toggle="tooltip" th:href="'/kurikulum/matkuldelete/' + ${kurikulum.kode} +'/'+ ${matakuliah.kode}" title="Delete">
+									<i class="fa fa-remove" ></i></a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+		  </div>
+		  
+	</div>
+	</div>
+	 <div th:replace="fragments/fragment :: footer"></div>
+
+
+    <!-- Optional JavaScript -->
+	<script>
+		     $('.condition').click( function(e) {
+		          e.preventDefault();
+  				var href = $(this).attr('href');
+            		bootbox.confirm("This is the default confirm!", function(result){ 
+						window.location = href;
+					});
+            
+        });
+	</script>
+
+  </body>
+</html>

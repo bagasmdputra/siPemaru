@@ -1,0 +1,15 @@
+diff a/pom.xml b/pom.xml	(rejected hunks)
+@@ -71,6 +71,13 @@
+    			 <groupId>org.json</groupId>
+     		<artifactId>json</artifactId>
+ 		</dependency>
++		<!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa -->
++		<dependency>
++    		<groupId>org.springframework.data</groupId>
++    		<artifactId>spring-data-jpa</artifactId>
++
++		</dependency>
++		
+ 	</dependencies>
+ 
+ 	<build>

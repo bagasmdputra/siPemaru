@@ -1,0 +1,74 @@
+body {
+          padding-top: 5rem;
+        }
+		
+		/* logo */
+		.logo{
+			position: absolute;
+			width: 127px;
+			height: 50px;
+			left: 31px;
+			top: 0px;
+		}
+
+
+		/* Rectangle */
+		.rectangle{
+			position: absolute;
+			width: 67.06px;
+			height: 50px;
+			left: 31px;
+			top: 0px;
+		
+			background: linear-gradient(306.71deg, #F77062 0%, #FE5196 100%);
+		}
+
+		/* Kurikulum */
+		.kurikulum-text{
+			position: absolute;
+			width: 113.59px;
+			height: 29.69px;
+			left: 44.41px;
+			top: 10.16px;
+
+			font-family: Inter UI;
+			font-style: italic;
+			font-weight: 900;
+			line-height: normal;
+			font-size: 25px;
+			letter-spacing: -0.05em;
+
+			color: #FAFAFA;
+		}
+		
+		/* navbar */
+		.navbar{
+			position: absolute;
+			width: 1440px;
+			height: 50px;
+			left: 0px;
+			top: 0px;
+		}
+
+		/* Rectangle */
+		.rectangle-navbar{
+			position: absolute;
+			width: 1440px;
+			height: 50px;
+			left: 0px;
+			top: 0px;
+
+			background: #333333;
+		}
+
+		ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    display: inline;
+}
+		
+}

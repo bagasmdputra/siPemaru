@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<!-- Required meta tags -->
+    	<meta charset="utf-8"/>
+    	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+		
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+		
+		
+		<div th:replace="fragments/fragment :: links"></div>
+		
+		<style>
+			/* SIAK FG - Kurikulum */
+			.home-title{
+				margin-left: 25px;
+				font-family: Inter UI;
+				font-style: normal;
+				font-weight: bold;
+				line-height: 47px;
+				font-size: 32px;
+				color: #333333;
+			}
+			
+			
+			.cari-btn{
+				width: 120px;
+				height: 30px;
+				background: #00E3AE;
+			}
+			
+			.navhome{
+				margin-left: 25px;
+			}
+			
+			.kalimat{
+				width:550px;
+    			margin: auto;
+			}
+			
+			.formProdiUniv{
+				margin-top: 25px;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<div th:replace="fragments/fragment :: header"></div>
+		
+		<h4 class="home-title">SIAK FG - Kurikulum berdasarkan Prodi</h4>
+		<div class="navhome">
+				<a class="home-title1" th:href="@{/}">Home</a> >> <a class="home-title2" th:href="@{/kurikulum}">Kurikulum</a> >> <a th:text="${'Search By Prodi'}" class="home-title3">Nama universitas</a>
+		</div>
+		
+		<div class="kalimat">
+			<div class="container">
+				<h3><strong>Kurikulum Berdasarkan Prodi</strong></h3>
+				
+				<p><h4>Gunakan tombol search di bawah ini untuk mendapatkan informasi kurikulum berdasarkan prodi yang
+				akan menampilkan daftar kurikulum untuk setiap angkatan aktif dalam program studi yang Anda pilih.
+				Pilih Universitas terlebih dahulu, pilih prodi yang ingin Anda ketahui Kurikulumnya, kemudian tekan
+				tombol seacrh untuk melanjutkan</h4></p>
+				
+
+				<form id = "myform" action="" class="formProdiUniv">
+					<div th:if="${univSelected == null and listUniv != null}" class="form-group" align="center">
+						<select th:field="*{universitas}" id="universitasDropdown" name="id_universitas" style="width:200px; height:25px;"
+								required="required">
+								<option th:if="${ univSelected == null}" hidden="hidden" value="">Pilih Universitas</option>
+								<option th:each="universitas : ${listUniv}" 
+									th:selected="${univSelected != null? universitas.id_univ == univSelected.id_univ : 0}"
+									th:value="${universitas.id_univ}"
+									th:text="${universitas.nama_univ}">Universitas</option>
+						</select>
+					</div>
+					
+					<div th:if="${univSelected != null}" class="form-group" align="center">
+						<select id="universitasDropdown" name="id_universitas" style="width:200px; height:25px;"
+								required="required" disabled="disabled">
+								<option 
+									selected = "selected"
+									th:value="${univSelected.id_univ}"
+									th:text="${univSelected.nama_univ}">Universitas</option>
+						</select>
+					</div>
+					
+					<div th:if="${fakSelected == null and listFakultas != null}" class="form-group" align="center">
+						<select th:field="*{fakultas}" id="fakultasDropdown" name="id_fakultas" style="width:200px; height:25px;"
+								required="required">
+								<option hidden="hidden" value="">Pilih Fakultas</option>
+								<option th:each="fakultas : ${listFakultas}" th:value="${fakultas.id_fakultas}"
+									th:text="${fakultas.nama_fakultas}">Fakultas</option>
+						</select>
+					</div>
+					
+					<div th:if="${fakSelected != null}" class="form-group" align="center">
+						<select id="fakultasDropdown" name="id_fakultas" style="width:200px; height:25px;"
+								required="required" disabled="disabled">
+								<option 
+									selected = "selected"
+									th:value="${fakSelected.id_fakultas}"
+									th:text="${fakSelected.nama_fakultas}">Fakultas</option>
+						</select>
+					</div>
+					
+					<div th:unless="${listProdi == null}" class="form-group" align="center">
+						<select  id="prodiDropdown" name="id_prodi" style="width:200px; height:25px;"
+								required="required">
+								<option hidden="hidden" value="">Pilih Prodi</option>
+								<option th:each="prodi : ${listProdi}" th:value="${prodi.id_prodi}"
+									th:text="${prodi.nama_prodi}">Prodi</option>
+						</select>
+					</div>
+					
+					<div align="right">
+						<button id="caribtn" class="cari-btn" type="submit">Cari</button>
+					</div>
+				</form>
+			</div>
+		</div>
+<script type="text/javascript">
+
+		$('#universitasDropdown').change(function() {
+				var univ = $('#universitasDropdown').find(":selected").val();
+ 			   window.location = '/kurikulumByProdi?univ=' + univ;
+		});
+		
+		$('#fakultasDropdown').change(function() {
+				var univ = $('#universitasDropdown').find(":selected").val();
+				var fak = $('#fakultasDropdown').find(":selected").val();
+
+ 			  window.location.href = decodeURIComponent('/kurikulumByProdi?univ=' + univ + '%26fak=' + fak);
+		});
+		
+		
+		$('#myform').submit( function(event) {
+				var univ = $('#universitasDropdown').find(":selected").val();
+				var fak = $('#fakultasDropdown').find(":selected").val();
+				var prod = $('#prodiDropdown').find(":selected").val();
+
+				event.preventDefault();
+ 		        window.location.href = decodeURIComponent('/angkatanaktif?univ=' + univ + '%26fak=' + fak + '%26prod=' + prod);
+ 			  
+		});
+				
+		
+
+</script>
+
+	</body>
+</html>

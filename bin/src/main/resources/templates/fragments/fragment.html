@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Fragment</title>
+		
+		<div th:fragment="links"> 
+			<title th:text="${pagetitle}"></title>
+			<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"></link>
+			<link rel="stylesheet" type="text/css" href="/css/datatables.min.css"></link>
+			
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+			
+        	<link rel="stylesheet" type="text/css" href="/css/datatables.min.css"/>
+   			<script type="text/javascript" src="/js/datatables.min.js"></script>
+			<link rel="stylesheet" type="/text/css" href="/css/datatables.css"></link>
+			<link rel="stylesheet" type="text/css" href="/css/datatables.css"></link>
+			<link rel="stylesheet" href="/css/style.css"></link>
+			<link rel="stylesheet" href="/css/font-awesome.css"></link>
+			<script type="text/javascript" charset="utf8" src="/js/datatables.min.js"></script>
+			<script type="text/javascript" charset="utf8" src="/js/datatables.js"></script>
+			
+			<style>
+				.logo-navbar{
+					width: 127px;
+					height: 50px;
+					top: 0px;
+				}
+		
+		
+				.logo-rectangle{
+					position: absolute;
+					width: 67.06px;
+					height: 50px;
+					left: 31px;
+					top: 0px;
+					
+					background: linear-gradient(306.71deg, #F77062 0%, #FE5196 100%);
+				}
+		
+				.logo-text{
+					position: absolute;
+					width: 113.59px;
+					height: 29.69px;
+					left: 44.41px;
+					top: 10.16px;
+					
+					font-family: Inter UI;
+					font-style: italic;
+					font-weight: 900;
+					line-height: normal;
+					font-size: 25px;
+					letter-spacing: -0.05em;
+					
+					color: #FAFAFA;
+				}
+		
+				.navigasi {
+					height: 50px;
+				}
+			 </style>		
+		</div>
+	</head>
+	
+	<body>
+		<div th:fragment="header">
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark navigasi">
+		
+				<a class="navbar-brand" href="#">
+					<div class="logo-navbar">
+						<div class="logo-rectangle">
+						</div>
+						<p class="logo-text">Kurikulum</p>
+					</div>
+				</a>
+			
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+			  <li class="nav-item">
+			  </li>
+			  <li class="nav-item">
+				<a class="nav-link" th:href="@{/}">Home</a>
+			  </li>
+			  <li class="nav-item">
+				<a class="nav-link" th:href="@{/kurikulum}">Kurikulum</a>
+			  </li>
+			  <li class="nav-item">
+				<a class="nav-link" th:href="@{/matakuliah}">Mata Kuliah</a>
+			  </li>
+			</ul>
+			
+			<ul class="navbar-nav ml-auto">
+   			<li class="nav-item navbar-right">
+					<form th:action="@{/logout}" method="post">
+						<input type="submit" value="Sign Out"/>
+					</form>
+			  </li>
+  			</ul>
+		</div>
+	</nav>
+		</div>
+					
+		<div th:fragment="body"></div>
+		<div th:fragment="footer"><!-- Optional JavaScript -->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.dataTables.min.js"></script>
+	<script>
+		$(document).ready( function () {
+	    	$('#myTable').DataTable();
+		} );
+	</script></div>
+		
+	</body>
+</html>

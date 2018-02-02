@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div th:replace="fragments/fragment :: links"></div>
+		<style>
+			/* SIAK FG - Kurikulum */
+			.home-title{
+				margin-left: 25px;
+				font-family: Inter UI;
+				font-style: normal;
+				font-weight: bold;
+				line-height: 47px;
+				font-size: 32px;
+				
+				color: #333333;
+			}
+
+			/* Home */
+			.home-title1{
+				margin-left: 25px;
+				font-family: Inter UI;
+				font-style: normal;
+				font-weight: normal;
+				line-height: 24px;
+				font-size: 16px;
+				
+				color: #333333;
+			}
+			
+			/* Home */
+			.home-title2{
+				font-family: Inter UI;
+				font-style: normal;
+				font-weight: normal;
+				line-height: 24px;
+				font-size: 16px;
+				
+				color: #333333;
+			}
+			
+			/* Mata Kuliah */
+			.matkul-par {
+				position: absolute;
+				width: 750px;
+				height: 95px;
+				top: 60px;
+				
+				font-family: Inter UI;
+				font-style: normal;
+				font-weight: normal;
+				line-height: 24px;
+				font-size: 16px;
+				text-align: justify;
+				
+				color: #000000;
+			}
+			
+			/* Rectangle 3 */
+			.tambah-btn{
+				position: absolute;
+				width: 120px;
+				height: 30px;
+				left: 300px;
+				top: 160px;
+				
+				background: #00E3AE;
+			}
+			
+			.table-matkul {
+				top: 480px;
+			}
+			
+			
+			
+			/* Kode Nama SKS Deskripsi Prasyarat Minimal SKS */
+			.detail-matkul-font {
+				font-family: Inter UI;
+				font-style: normal;
+				font-weight: normal;
+				line-height: 24px;
+				font-size: 16px;
+				
+				color: #000000;
+			}
+			
+			/* Prasyarat Sebelum mengambil Mata Kuliah*/
+			.prasyarat-par{
+				position: absolute;
+				width: 483px;
+				height: 86px;
+				left: 150px;
+				
+				font-family: Inter UI;
+				font-style: normal;
+				font-weight: bold;
+				line-height: 24px;
+				font-size: 24px;
+				
+				color: #000000;
+			}
+			
+			/* Rectangle 3 */
+			.tambah-btn{
+				position: absolute;
+				width: 100px;
+				height: 30px;
+				left: 533px;
+				top: 100px;
+				
+				background: #00E3AE;
+			}
+			
+			/* Rectangle 3 */
+			.cari-search{
+				position: absolute;
+				width: 387px;
+				height: 30px;
+				left: 150px;
+				top: 100px;
+				
+				background: #FFFFFF;
+				border: 1px solid #00E3AE;
+				box-sizing: border-box;
+			}
+			
+			.pra-min-sks{
+				width: 233px;
+				height: 22px;
+				left: 625px;
+				top: 237px;
+				
+				mix-blend-mode: darken;
+				border: 0.5px solid rgba(0, 0, 0, 0.5);
+			}
+			
+			.pra-min-sks-jumlah{
+				width: 233px;
+				height: 23px;
+				left: 625px;
+				top: 236px;
+				
+				font-family: Inter UI;
+				font-style: normal;
+				font-weight: normal;
+				line-height: normal;
+				font-size: 16px;
+				text-align: center;
+				
+				color: rgba(0, 0, 0, 0.5);
+			}
+			
+			/* Rectangle 3 */
+			.simpan-btn{
+				width: 120px;
+				height: 30px;
+				left: 0 px;
+				margin-top: 10px;
+				background: #00E3AE;
+			}
+		</style>
+	</head>
+	<body>
+    	<div th:replace="fragments/fragment :: header"></div>
+     
+		<h4 class="home-title"><span th:text="${kurikulum.nama}">Kurikulum Kerja</span> - <span th:text="${matkul.kode}">CS201878</span> <span th:text="${matkul.nama}">Kesenian Tanah Liat</span></h4>
+		<a class="home-title1" href="homepage.html">Home</a> >> <a class="home-title2" href="kurikulum.html">Kurikulum</a> >> <a class="home-title2" href="kurikulumdetail.html"><span th:text="${kurikulum.kode} + ' ' + ${kurikulum.nama}">KRK-121 Kurikulum Kerja</span></a> >> <a class="home-title2" href="matkulprasyarat.html"><span th:text="${matkul.nama}">Kesenian Tanah Liat</span></a>
+
+		<div class="container">
+		<br/>
+	  		<div class="row">
+		  		<div class="col-sm-3"></div>
+		  		<div class="col-sm-6">
+					<table style="width:100%;" class="detail-matkul" cellspacing="0">
+						<tr>
+							<td class="detail-matkul-font"><strong>Kode</strong></td>
+							<td class="detail-matkul-font"><strong>:</strong></td>
+							<td class="detail-matkul-font" th:text="${kurikulum.kode}">KRK 121</td>
+						</tr>
+						<tr>
+							<td class="detail-matkul-font"><strong>Nama</strong></td>
+							<td class="detail-matkul-font"><strong>:</strong></td>
+							<td class="detail-matkul-font" th:text="${kurikulum.nama}">Kurikulum Kerja</td>
+						</tr>
+						<tr>
+							<td class="detail-matkul-font"><strong>SKS</strong></td>
+							<td class="detail-matkul-font"><strong>:</strong></td>
+							<td class="detail-matkul-font" th:text="${matkul.jumlahSKS}">10</td>
+						</tr>
+						<tr>
+							<td class="detail-matkul-font"><strong>Deskripsi</strong></td>
+							<td class="detail-matkul-font"><strong>:</strong></td>
+							<td class="detail-matkul-font" th:text="${matkul.deskripsi}">Sangat berguna untuk memahami tanah liat</td>
+						</tr>
+						<tr>
+							<td class="detail-matkul-font"><strong>Prasyarat Minimal SKS</strong></td>
+							<td class="detail-matkul-font"><strong>:</strong></td>
+							<td><div class="pra-min-sks"><p class="pra-min-sks-jumlah detail-matkul-font" th:text="${matkul.sksPrasyarat}">10</p></div></td>
+						</tr>
+					</table>
+	  				<br/>
+	  				<br/>
+	  			</div>
+	  		<div class="col-sm-3"></div>
+		</div>
+	  
+		<div class="row">
+	  		<div class="col-sm-3"></div>
+	  		<div class="col-sm-8">
+				<p>
+					<b> Prasyarat Sebelum Mengambil Mata Kuliah </b> <br/>
+					<table>
+						<tr th:each="matkulPrasyarat,iterationStatus: ${listMatkulPrasyarat}">
+							<td th:text="${matkulPrasyarat.kode} + ' - ' + ${matkulPrasyarat.nama}"></td>
+							<td><a th:href="'/deletePrasyarat/' + ${prasyarat.kodeKurikulum} + '/' + ${prasyarat.kodeMatkul} + '/' + ${matkulPrasyarat.kode}" >Delete</a></td>
+						</tr>
+					</table>
+			  	</p>
+			  	<form action="/addPrasyarat" th:object="${prasyarat}" method="post">
+			  		<input type="hidden" name="kodeKurikulum" placeholder="" th:value="${kodeKurikulum}" th:field="*{kodeKurikulum}" required = "true" />
+			  		
+			  		<input type="hidden" name="kodeMatkul" placeholder="" th:value="${kodeMatkul}" th:field="*{kodeMatkul}" required = "true" />
+
+					<select class="form-control" name="kodeMatkulPrasyarat" th:field="*{kodeMatkulPrasyarat}" required="required">
+						<option value=""> Pilih Mata Kuliah</option>
+						<option th:value="${matkulPrasyaratBaru.kode}" th:each="matkulPrasyaratBaru,iterationStatus: ${listMatkul}" th:text="${matkulPrasyaratBaru.kode} + ' - ' + ${matkulPrasyaratBaru.nama}"> </option>
+						
+					</select>
+					
+					<!-- button type="button" class="tambah-btn">Tambah</button -->
+					<div align="right">
+		  				<button type="submit" class="simpan-btn">Simpan</button>
+		  			</div>
+	  			</form>	
+		  	</div>
+		</div>
+ </div>
+
+	<div th:replace="fragments/fragment :: footer"></div>
+  </body>
+</html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <div th:replace="fragments/fragment :: links"></div>
+  </head>
+  <body>
+      <div th:replace="fragments/fragment :: header"></div>
+
+<h4 class="home-title">SIAK FG - Kurikulum</h4>
+<a class="home-title1" href="homepage.html">Home</a>
+
+<div class="container">
+	  <div class="row">
+		<div class="col-sm-5">
+		  <p class="kurikulum-par">
+		  <b> Kurikulum </b> <br></br>
+			Daftar kurikulum yang bisa Anda gunakan dan Anda buat. Anda memiliki akses untuk mengubah bahkan menghapus data. Seluruh pengaturan kurikulum termasuk assign mata kuliah ke dalan suatu kurikulum dan mengatur prasyarat ada dalam menu ini.
+		  </p>
+		  <form method="get" action="/kurikulum">
+		  	<input type="submit" value="Kurikulum" class="kurikulum-btn"></input>
+		  </form>
+		</div>
+		<div class="col-sm-2">
+		</div>
+		<div class="col-sm-5">
+		  <p class="matkul-par">
+		  <b> Mata Kuliah </b> <br></br>
+		  Daftar Mata Kuliah untuk mengatur dan melihat mata kuliah yang tersedua. Anda juga dapat membuat mata kuliah baru di menu ini.
+			</p>
+		<form id="myform" method="get" action="/matakuliah">
+			<input type="submit" value="Mata Kuliah" class="matkul-btn"></input>
+		 </form>
+		</div>
+	  </div>
+	  <div class="row">
+	  <div class="col-sm-2">
+		</div>
+		<div class="col-sm-8">
+		<p class="kurikulum-prodi-par">
+		<b> Kurikulum berdasarkan Prodi </b> <br></br>
+		Gunakan tombol search di bawah ini untuk mendapatkan informasi kurikulum berdasarkan prodi yang akan menampilkan daftar kurikulum untuk setiap angkatan aktif dalam program studi yang Anda pilih. Pilih Universitas terlebih dahulu, pilih prodi yang ingin Anda ketahui kurikulumnya, kemudian tekan tombol search untuk melanjutkan
+		</p>
+		<select th:field="*{universitas}" id="universitasDropdown" name="id_universitas" class="cari-search"
+								required="required">
+								<option th:if="${ univSelected == null}" hidden="hidden" value="">Pilih Universitas</option>
+								<option th:each="universitas : ${listUniv}" 
+									th:selected="${univSelected != null? universitas.id_univ == univSelected.id_univ : 0}"
+									th:value="${universitas.id_univ}"
+									th:text="${universitas.nama_univ}">Universitas</option>
+						</select>
+						
+		
+		
+		<form id="myform" action="">
+			<input type="submit" value="cari" class="cari-btn"></input>
+		</form>
+		</div>
+		<div class="col-sm-2">
+		<div class="col"> 
+		</div>
+		</div>
+	</div>
+ </div>
+
+<div th:replace="fragments/fragment :: footer"></div>
+<style>
+		.logo-navbar{
+width: 127px;
+height: 50px;
+top: 0px;
+}
+
+
+.logo-rectangle{
+position: absolute;
+width: 67.06px;
+height: 50px;
+left: 31px;
+top: 0px;
+
+background: linear-gradient(306.71deg, #F77062 0%, #FE5196 100%);
+}
+
+.logo-text{
+position: absolute;
+width: 113.59px;
+height: 29.69px;
+left: 44.41px;
+top: 10.16px;
+
+font-family: Inter UI;
+font-style: italic;
+font-weight: 900;
+line-height: normal;
+font-size: 25px;
+letter-spacing: -0.05em;
+
+color: #FAFAFA;
+}
+
+.navigasi {
+height: 50px;
+}
+
+/* SIAK FG - Kurikulum */
+.home-title{
+margin-left: 25px;
+font-family: Inter UI;
+font-style: normal;
+font-weight: bold;
+line-height: 47px;
+font-size: 32px;
+
+color: #333333;
+}
+
+/* Home */
+.home-title1{
+margin-left: 25px;
+font-family: Inter UI;
+font-style: normal;
+font-weight: normal;
+line-height: 24px;
+font-size: 16px;
+
+color: #333333;
+}
+
+/* Kurikulum par */
+.kurikulum-par{
+position: absolute;
+width: 300px;
+height: 221.65px;
+left: 200px;
+top: 60px;
+
+font-family: Inter UI;
+font-style: normal;
+font-weight: normal;
+line-height: 24px;
+font-size: 16px;
+text-align: justify;
+
+color: #333333;
+}
+
+/* Mata Kuliah */
+.matkul-par{
+position: absolute;
+width: 300px;
+height: 211.28px;
+right: 200px;
+top: 60px;
+
+font-family: Inter UI;
+font-style: normal;
+font-weight: normal;
+line-height: 24px;
+font-size: 16px;
+text-align: justify;
+
+color: #000000;
+}
+
+/* Rectangle 3 */
+.kurikulum-btn{
+position: absolute;
+width: 160px;
+height: 30px;
+left: 265px;
+top: 260px;
+
+background: #00E3AE;
+
+}
+
+/* Rectangle 3 */
+.matkul-btn{
+position: absolute;
+width: 160px;
+height: 30px;
+left: 40px;
+top: 265px;
+
+background: #00E3AE;
+}
+
+/* Kurikulum berdasarkan Prodi */
+.kurikulum-prodi-par{
+position: absolute;
+width: 750px;
+height: 140px;
+top: 380px;
+
+font-family: Inter UI;
+font-style: normal;
+font-weight: normal;
+line-height: 24px;
+font-size: 16px;
+text-align: justify;
+
+color: #000000;
+}
+
+.cari-btn{
+position: absolute;
+width: 120px;
+height: 30px;
+left: 416px;
+top: 540px;
+
+background: #00E3AE;
+
+}
+
+.cari-search{
+position: absolute;
+width: 200px;
+height: 30px;
+left: 220px;
+top: 540px;
+
+background: #FFFFFF;
+border: 1px solid #00E3AE;
+box-sizing: border-box;
+}
+	 </style>
+	 
+	 <script type="text/javascript">
+
+		
+		
+		$('input.cari-btn').click( function(event) {
+		event.preventDefault();
+				var univ = $('#universitasDropdown').find(":selected").val();
+				if (univ == ""){
+					alert("WARNING! \n Anda belum memilih universitas!");
+				}else{
+ 		         window.location = '/kurikulumByProdi?univ=' + univ;
+ 			  }
+		});
+				
+		
+
+	</script>
+  </body>
+</html>

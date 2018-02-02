@@ -1,0 +1,170 @@
+ body {
+          padding-top: 5rem;
+        }
+		
+
+.logo-navbar{
+position: absolute;
+width: 127px;
+height: 50px;
+left: 31px;
+top: 0px;
+}
+
+
+.logo-rectangle{
+position: absolute;
+width: 67.06px;
+height: 50px;
+left: 31px;
+top: 0px;
+
+background: linear-gradient(306.71deg, #F77062 0%, #FE5196 100%);
+}
+
+.logo-text{
+position: absolute;
+width: 113.59px;
+height: 29.69px;
+left: 44.41px;
+top: 10.16px;
+
+font-family: Inter UI;
+font-style: italic;
+font-weight: 900;
+line-height: normal;
+font-size: 25px;
+letter-spacing: -0.05em;
+
+color: #FAFAFA;
+}
+		
+		/* navbar */
+		.navbar{
+			position: absolute;
+			width: 1440px;
+			height: 50px;
+			left: 0px;
+			top: 0px;
+		}
+
+		/* Rectangle */
+		.rectangle-navbar{
+			position: absolute;
+			width: 1440px;
+			height: 50px;
+			left: 0px;
+			top: 0px;
+
+			background: #333333;
+		}
+		
+.logo-kurikulum{
+				position: absolute;
+				width:900px;
+				padding-top:150px;
+				padding-left:400px;
+				margin-left: 100px;
+			}
+		
+/* logo */
+.logo-center{
+position: absolute;
+width: 303px;
+height: 128px;
+left: 569px;
+top: 265px;
+}
+
+
+/* Rectangle */
+.rectangle-logo{
+position: absolute;
+left: 0%;
+right: 47.19%;
+top: 0%;
+bottom: 0%;
+
+background: linear-gradient(308.66deg, #F77062 0%, #FE5196 100%);
+}
+
+/* Kurikulum */
+.kurikulum-text-logo{
+position: absolute;
+left: 10.56%;
+right: 0%;
+top: 20.31%;
+bottom: 20.31%;
+
+font-family: Inter UI;
+font-style: italic;
+font-weight: 900;
+line-height: normal;
+font-size: 64px;
+letter-spacing: -0.05em;
+
+color: #333333;
+}
+
+/* container */
+.container-box{
+position: absolute;
+width: 618px;
+height: 65px;
+left: 407px;
+top: 407px;
+}
+
+
+/* Rectangle 2.14 */
+.rectangle-box1{
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+background: #666666;
+}
+
+
+/* Rectangle 3 */
+.rectangle-username{
+position: absolute;
+width: 200px;
+height: 30px;
+left: 434px;
+top: 424px;
+
+background: #FFFFFF;
+}
+
+/* Rectangle 3.1 */
+.rectangle-password{
+position: absolute;
+width: 200px;
+height: 30px;
+left: 656px;
+top: 424.44px;
+
+background: #FFFFFF;
+}
+
+.form-field-username {
+	border-radius: 0px;
+}
+
+.form-field-password {
+	border-radius: 0px;
+
+}
+
+
+/* Rectangle 3 */
+.submit-button{
+background: #00E3AE;
+border-radius: 0px;
+padding-left: 30px;
+padding-right: 30px;
+margin-right: 0px;
+}

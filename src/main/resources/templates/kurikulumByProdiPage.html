@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<!-- Required meta tags -->
+    	<meta charset="utf-8"/>
+    	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+		
+
+		<div th:replace="fragments/fragment :: links"></div>
+		
+	</head>
+	
+	<body>
+		<div th:replace="fragments/fragment :: header"></div>
+		
+		<h4 class="home-title">SIAK FG - Kurikulum berdasarkan Prodi</h4>
+		<div class="navhome">
+				<a class="home-title1" th:href="@{/}">Home</a> >> <a class="home-title2" th:href="@{/kurikulum}">Kurikulum</a> >> <a th:text="${'Search By Prodi'}" class="home-title3">Nama universitas</a>
+		</div>
+		
+		<div class="kalimat">
+			<div class="container top-buffer">
+				<h4 align="center">Kurikulum Berdasarkan Prodi</h4>
+				<br></br>
+				<p class="par">				
+				Gunakan tombol search di bawah ini untuk mendapatkan informasi kurikulum berdasarkan prodi yang
+				akan menampilkan daftar kurikulum untuk setiap angkatan aktif dalam program studi yang Anda pilih.
+				Pilih Universitas terlebih dahulu, pilih prodi yang ingin Anda ketahui Kurikulumnya, kemudian tekan
+				tombol seacrh untuk melanjutkan</p>
+				
+				<form id = "myform" class="top-buffer" th:action="@{/angkatanaktif}">
+					<div th:if="${univSelected == null and listUniv != null}" class="form-group" align="center">
+						<select th:field="*{universitas}" id="universitasDropdown" name="id_universitas"  class="form-control form-control-sm bc-green text-right"
+								required="required">
+								<option hidden="hidden" value="">Pilih Universitas</option>
+								<option th:each="universitas : ${listUniv}" 
+									th:selected="${univSelected != null? universitas.id_univ == univSelected.id_univ : 0}"
+									th:value="${universitas.id_univ}"
+									th:text="${universitas.nama_univ}">Universitas</option>
+						</select>
+					</div>
+					
+					<div th:if="${univSelected != null}" class="form-group" align="center">
+						<select id="universitasDropdown" name="id_universitas"  class="form-control form-control-sm bc-green disabled"
+								required="required" disabled="disabled">
+								<option 
+									selected = "selected"
+									th:value="${univSelected.id_univ}"
+									th:text="${univSelected.nama_univ}">Universitas</option>
+						</select>
+					</div>
+					
+					<div th:if="${fakSelected == null and listFakultas != null}" class="form-group" align="center">
+						<select th:field="*{fakultas}" id="fakultasDropdown" name="id_fakultas"  class="form-control form-control-sm bc-green "
+								required="required">
+								<option hidden="hidden" value="">Pilih Fakultas</option>
+								<option th:each="fakultas : ${listFakultas}" th:value="${fakultas.id_fakultas}"
+									th:text="${fakultas.nama_fakultas}">Fakultas</option>
+						</select>
+					</div>
+					
+					<div th:if="${fakSelected != null}" class="form-group" align="center">
+						<select id="fakultasDropdown" name="id_fakultas"  class="form-control form-control-sm bc-green disabled"
+								required="required" disabled="disabled">
+								<option 
+									selected = "selected"
+									th:value="${fakSelected.id_fakultas}"
+									th:text="${fakSelected.nama_fakultas}">Fakultas</option>
+						</select>
+					</div>
+					
+					<div th:unless="${listProdi == null}"  align="center">
+						<select  id="prodiDropdown"  class="form-control form-control-sm bc-green "
+								required="required">
+								<option hidden="hidden" value="">Pilih Prodi</option>
+								<option th:each="prodi : ${listProdi}" th:value="${prodi.id_prodi}"
+									th:text="${prodi.nama_prodi}">Prodi</option>
+						</select>
+					</div>
+					
+					<div th:if="${fakSelected != null}" align="center">
+						<button id="caribtn" class="btn bg-green top-buffer" type="submit">Cari</button>
+					</div>
+					<div th:unless="${fakSelected != null}" align="center">
+						<button id="caribtn" class="btn bg-green top-buffer disabled" type="submit" disabled="disabled">Cari</button>
+					</div>
+				</form>
+			</div>
+		</div>
+<script type="text/javascript">
+
+		$('#universitasDropdown').change(function() {
+				var univ = $('#universitasDropdown').find(":selected").val();
+ 			   window.location = '/kurikulumByProdi?univ=' + univ;
+		});
+		
+		$('#fakultasDropdown').change(function() {
+				var univ = $('#universitasDropdown').find(":selected").val();
+				var fak = $('#fakultasDropdown').find(":selected").val();
+
+ 			  window.location.href = decodeURIComponent('/kurikulumByProdi?univ=' + univ + '%26fak=' + fak);
+		});
+		$('#myform').submit( function(event) {
+				var univ = $('#universitasDropdown').find(":selected").val();
+				var fak = $('#fakultasDropdown').find(":selected").val();
+				var prod = $('#prodiDropdown').find(":selected").val();
+
+				event.preventDefault();
+ 		        window.location.href = decodeURIComponent('/angkatanaktif?univ=' + univ + '%26fak=' + fak + '%26prod=' + prod);
+ 			  
+		});
+
+</script>
+
+	</body>
+</html>

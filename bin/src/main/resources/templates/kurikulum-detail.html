@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+  <head>
+  	<title th:text="${pagetitle}"></title>
+    	<div th:replace="fragments/fragment :: links"></div>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    	<meta charset="utf-8"/>
+    	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+
+    	<!-- Bootstrap CSS -->
+    	<link rel="stylesheet" href="css/bootstrap.min.css"/>
+	    <link rel="stylesheet" href="css/style.css"/>
+	    <link rel="stylesheet" href="css/font-awesome.css"/>
+		<link rel="stylesheet" href="css/jquery.dataTables.min.css"/> 
+  </head>  
+  
+  <body>
+  <div th:replace="fragments/fragment :: header"></div>
+    <h4 class="home-title" th:text="'SIAK FG - ' + ${kurikulum.nama}">SIAK FG - </h4> 
+	<a class="home-title1" href="/" th:text="Home">Home</a> >> <a class="home-title2" href="/kurikulum">Kurikulum</a> >> <a class="home-title3" th:text="${kurikulum.nama}">Apaan</a>
+
+	<div class="container">
+	<div class="row">
+		  <div class="col-md-4"></div>
+		  <div class="col-lg-2">
+                <p>Kode</p>
+                <p>Nama</p>
+                <p>Tahun Terbit</p>
+                <p>Jumlah SKS Wajib</p>
+                <p>Jumlah SKS Pilihan</p>
+                <form method="get" action="/kurikulum/edit">
+                	<input type="hidden" th:value="${kurikulum.kode}" name="kode_kurikulum"/>
+                	<button type="submit" class="edit-btn">Edit</button>
+                </form>
+                <br/><br/><br/>
+           </div>
+            
+           <div class="col-lg-3">
+                <p th:text="${kurikulum.kode}">Kode</p>
+                <p th:text="${kurikulum.nama}">Nama</p>
+                <p th:text="${kurikulum.tahun}">Tahun Terbit</p>
+                <p th:text="${kurikulum.sksWajib}">Jumlah SKS Wajib</p>
+                <p th:text="${kurikulum.sksPilihan}">Jumlah SKS Pilihan</p>
+                <a class="action" th:href="'/kurikulum/delete/' + ${kurikulum.kode}"><button type="button" class="delete-btn">Delete</button></a>
+                <br/><br/><br/>
+            </div>
+		  
+		  <div class="col-md-2">
+		  </div>
+	</div>
+
+	<div class="row">
+		  <div class="col-md-6">
+		  	<h5 th:text="'Mata Kuliah Wajib ' + ${kurikulum.nama}"></h5> <br/>
+				<table class="table table-striped table-matkul" id="myTable">
+					<thead>
+					  <tr style="font-weight:bold;padding:5px">
+						<td>Kode</td>
+						<td>Nama</td>
+						<th class="text-center">Jumlah SKS</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr th:each="matakuliah,iterationStatus: ${listMatkulWajib}">
+							<td th:text="${matakuliah.kode}"></td>
+							<td th:text="${matakuliah.nama}"></td>
+							<td class="text-center" th:text="${matakuliah.jumlahSKS}"></td>
+						</tr>
+					</tbody>
+				</table>
+		  </div>
+		  <div class="col-md-6">
+		  		<h5 th:text="'Mata Kuliah Pilihan ' + ${kurikulum.nama}"></h5> <br/>
+				<table class="table table-striped table-matkul" id="myTable2">
+					<thead>
+					  <tr style="font-weight:bold;padding:5px">
+						<td>Kode</td>
+						<td>Nama</td>
+						<th class="text-center">Jumlah SKS</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr th:each="matakuliah,iterationStatus: ${listMatkulPilihan}">
+							<td th:text="${matakuliah.kode}"></td>
+							<td th:text="${matakuliah.nama}"></td>
+							<td class="text-center" th:text="${matakuliah.jumlahSKS}"></td>
+						</tr>
+					</tbody>
+				</table>
+		  </div>
+		  
+	</div>
+	</div>
+	 <div th:replace="fragments/fragment :: footer"></div>
+<style>
+.logo-navbar{
+width: 127px;
+height: 50px;
+top: 0px;
+}
+
+.logo-rectangle{
+position: absolute;
+width: 67.06px;
+height: 50px;
+left: 31px;
+top: 0px;
+
+background: linear-gradient(306.71deg, #F77062 0%, #FE5196 100%);
+}
+
+/* SIAK FG - Kurikulum */
+.home-title{
+margin-left: 25px;
+font-family: Inter UI;
+font-style: normal;
+font-weight: bold;
+line-height: 47px;
+font-size: 32px;
+
+color: #333333;
+}
+
+/* Home */
+.home-title1{
+margin-left: 25px;
+font-family: Inter UI;
+font-style: normal;
+font-weight: normal;
+line-height: 24px;
+font-size: 16px;
+
+color: #333333;
+}
+
+/* Home */
+.home-title2{
+font-family: Inter UI;
+font-style: normal;
+font-weight: normal;
+line-height: 24px;
+font-size: 16px;
+
+color: #333333;
+}
+
+/* Home */
+.home-title3{
+font-family: Inter UI;
+font-style: normal;
+font-weight: normal;
+line-height: 24px;
+font-size: 16px;
+
+color: #333333;
+}
+
+/* Mata Kuliah */
+.matkul-par {
+position: absolute;
+width: 750px;
+height: 95px;
+top: 60px;
+
+font-family: Inter UI;
+font-style: normal;
+font-weight: normal;
+line-height: 24px;
+font-size: 16px;
+text-align: justify;
+
+color: #000000;
+}
+
+/* Rectangle 3 */
+.edit-btn{
+
+width: 120px;
+height: 30px;
+left: 10px;
+top: 220px;
+
+background: #00E3AE;
+}
+
+/* Rectangle 3 */
+.delete-btn {
+width: 120px;
+height: 30px;
+left: 160px;
+top: 220px;
+
+background: #FE5196;
+}
+
+/* Rectangle 3 */
+.add-btn {
+width: 150px;
+height: 30px;
+left: 160px;
+top: 220px;
+
+background: #FE5196;
+}
+
+.table-kurikulum {
+position: absolute;
+top: 50px;
+}
+
+.action{
+color: #3399ff;
+}
+
+table, tr, td {
+	background-color: white;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+	 </style>
+
+    <!-- Optional JavaScript -->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.dataTables.min.js"></script>
+	<script>
+		$(document).ready( function () {
+	    	$('#myTable').DataTable();
+	    	$('#myTable2').DataTable();
+		} );
+	</script>
+  </body>
+</html>

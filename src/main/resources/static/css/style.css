@@ -1,0 +1,190 @@
+$grid-gutter-width: 50px !default;
+
+
+
+.logo-navbar{
+width: 127px;
+height: 50px;
+top: 0px;
+}
+
+
+.logo-rectangle{
+
+width: 67.06px;
+height: 50px;
+margin-left: 10px;
+margin-right:7px;
+top: 0px;
+
+background: linear-gradient(306.71deg, #F77062 0%, #FE5196 100%);
+}
+
+.logo-text{
+position:fixed;
+float:left;
+width: 113.59px;
+height: 29.69px;
+left: 10px;
+top: 10.16px;
+
+font-family: Inter UI;
+font-style: italic;
+font-weight: 900;
+line-height: normal;
+font-size: 25px;
+letter-spacing: -0.05em;
+
+color: #FAFAFA;
+}
+
+.navigasi {
+height: 50px;
+}
+
+/* SIAK FG - Kurikulum */
+.home-title{
+margin-left: 25px;
+font-family: Inter UI;
+font-style: normal;
+font-weight: bold;
+line-height: 47px;
+font-size: 32px;
+
+color: #333333;
+}
+
+
+/* Kurikulum par */
+.par{
+
+font-family: Inter UI;
+font-style: normal;
+font-weight: normal;
+line-height: 24px;
+font-size: 16px;
+text-align: justify;
+
+color: #333333;
+}
+
+/* Mata Kuliah */
+.matkul-par{
+font-family: Inter UI;
+font-style: normal;
+font-weight: normal;
+line-height: 24px;
+font-size: 16px;
+text-align: justify;
+
+color: #000000;
+}
+
+/* Rectangle 3 */
+.green-btn{
+
+width: 160px;
+height: 30px;
+background: #00E3AE;
+
+}
+
+
+
+.cari-search{
+width: 200px;
+height: 30px;
+
+background: #FFFFFF;
+border: 1px solid #00E3AE;
+box-sizing: border-box;
+}
+
+.navhome{
+	margin-left: 25px;
+}
+
+.kalimat{
+	width:550px;
+	margin: auto;
+}
+
+
+.top-buffer { margin-top:40px; }
+.bottom{position:absolute; bottom:0;}
+.center-div{
+    margin: 0 auto;
+    width:100% /* value of your choice which suits your alignment */
+}
+.bg-green{
+background: #00E3AE;
+}
+.green{
+color: #00E3AE;
+}
+
+.bc-green{
+border-color: #00E3AE;
+}
+
+
+.btn{
+width:150px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    
+}
+.btn:hover{
+	background: black;
+	color:white;
+}
+
+.btn.bg-green:hover{
+	background: white;
+	color:black;
+	border-color: #00E3AE;
+}
+.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.fa{
+	color:#DCDCDC;
+}
+.fa.fa-remove:hover{
+	color:red;
+}
+.fa.fa-plus:hover{
+	color:green;
+}
+.fa.fa-pencil:hover{
+	color:brown;
+}
+
+body{
+	padding-top:50px;
+	padding-bottom:100px;
+}
+
+* {
+  border-radius: 0 !important;
+}
+
+.navigation{
+height:50px;
+}
+
+div.alert{
+
+
+    top: 70px;
+    right: 10px;
+    min-height:100px;
+    width: 250px;
+    cursor: pointer;
+	opacity: 0.9;
+	margin: auto;
+	position: fixed;
+}

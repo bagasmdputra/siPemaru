@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+	<head>
+  		<title th:text="${pagetitle}"></title>
+    	<div th:replace="fragments/fragment :: links"></div>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    	<meta charset="utf-8"/>
+    	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  	</head>  
+  <body>
+  <div th:replace="fragments/fragment :: header"></div>
+		<h4 class="home-title">SIAK FG - <span th:text="${matakuliah.nama}"></span></h4>
+		<div class="navhome">
+			<a class="home-title1" th:href="@{/}">Home</a> >> <a class="home-title2" th:href="@{/matakuliah}">Mata Kuliah</a> >> <a class="home-title2"><span th:text="${matakuliah.kode + ' - ' + matakuliah.nama}"></span></a>
+		</div>
+  	<br/><br/><br/>
+  	 
+	<div class="container">
+  	<div class="row">
+		<div class="col-md-1"></div>
+		<div class="col-md-10">
+		
+		<table class="table table-striped" >
+        	<thead>
+            	<tr style="font-weight:bold;padding:5px;">
+	          		<td>Kode</td>
+	          		<td>Nama</td>
+	          		<th class="text-center">Jumlah SKS</th>
+					<th class="text-center">Deskripsi</th>
+	          		<th class="text-center"></th>
+				</tr>
+              </thead>
+	  		
+	  		<tbody>
+				<tr>
+					<td th:text="${matakuliah.kode}"></td>
+					<td> <a th:text="${matakuliah.nama}"></a></td>
+					<td class="text-center" th:text="${matakuliah.jumlahSKS}"></td>
+					<td class="text-center" th:text="${matakuliah.deskripsi}"></td>
+					<td>
+						<a class="action" data-toggle="tooltip" th:href="'/editMatkul/' + ${matakuliah.kode}" title="Edit">
+							<i class="fa fa-pencil" ></i>
+						</a> | 
+						<a class="action" data-toggle="tooltip" th:href="'/deleteMatkul/' + ${matakuliah.kode}" title="Delete">
+							<i class="fa fa-remove" ></i>
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+              
+
+	  </div>
+	  <div class="col-sm-1"> </div>
+	  </div>
+	  </div>
+	  
+
+	<div th:replace="fragments/fragment :: footer"></div>
+
+  </body>
+</html>

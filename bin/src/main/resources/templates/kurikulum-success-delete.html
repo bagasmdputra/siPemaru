@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+	<head>
+  		<title th:text="${pagetitle}"></title>
+    		<div th:replace="fragments/fragment :: links"></div>
+			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    		<meta charset="utf-8"/>
+    		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+	    	<!-- Bootstrap CSS -->
+	    	<link rel="stylesheet" href="css/bootstrap.min.css"/>
+		    <link rel="stylesheet" href="css/style.css"/>
+		    <link rel="stylesheet" href="css/font-awesome.css"/>
+			<link rel="stylesheet" href="css/jquery.dataTables.min.css"/> 
+	</head>  
+  
+	<body>
+  		<div th:replace="fragments/fragment :: header"></div>
+    	<br/>
+    	<h5 class="text-center" th:text="'Anda berhasil menghapus kurikulum dengan kode ' + ${kode}"></h5>
+	 	<div th:replace="fragments/fragment :: footer"></div>
+	</body>
+</html>

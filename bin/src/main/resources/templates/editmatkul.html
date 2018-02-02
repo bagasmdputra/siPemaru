@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <div th:replace="fragments/fragment :: links"></div>
+
+  </head>
+  <body>
+      <div th:replace="fragments/fragment :: header"></div>
+
+<h4 class="home-title">SIAK FG - <span th:text="${matakuliah.nama}"></span></h4>
+<a class="home-title1" href="/homepage">Home</a> >> <a class="home-title2" href="matakuliah.html">Mata Kuliah</a> >> <a class="home-title2" href="matkuldetail.html"><span th:text="${matakuliah.kode} + ' ' + ${matakuliah.nama}"></span></a>
+
+	<div class="container">
+	  <div class="row">
+	  <div class="col-sm-2">
+	  </div>
+	  <div class="col-sm-8">
+	  <p class="nama-matkul">
+	  <b> <span th:text="${matakuliah.nama}"></span> </b>
+	  </p>
+	  <br></br>
+	  
+	  <form th:object="${matakuliah}" th:action="'/editMatkul/' + ${matakuliah.kode}" method="post">
+	  <table class="table table-matkul">
+                <thead>
+                  <tr style="font-weight:bold;padding:5px">
+	          		<td>Kode</td>
+	          		<td>Nama</td>
+	          		<td style="text-align: center;">Jumlah SKS</td>
+					<td style="text-align: center;">Deskripsi</td>
+	          		<td style="text-align: center;">Aksi</td>
+	          	</tr>
+                </thead>
+                
+                <tbody>
+                	<tr>
+                		
+							<td th:text="${matakuliah.kode}"></td>
+							<td><input th:value="${matakuliah.nama}" name="nama" type="text" placeholder="Nama Mata Kuliah" /></td>
+							<td><input th:value="${matakuliah.jumlahSKS}" name="jumlahSKS" type="number" placeholder="jumlah SKS" /></td>
+							<td><input th:value="${matakuliah.deskripsi}" name="deskripsi" type="text" placeholder="Deskripsi" /></td>
+							<td><a method="post" class="action" th:href="'/deleteMatkul/' + ${matakuliah.kode}" th:text="delete"><button type="button" class="delete-btn">Del</button></a></td>
+						
+                	</tr>
+                </tbody>
+        </table>
+        <button type="submit" class="save-btn">Simpan</button>
+		</form>
+	  </div>
+	  <div class="col-sm-2">
+	  </div>
+	  </div>
+	
+				
+	  
+ </div>
+
+
+    <div th:replace="fragments/fragment :: footer"></div>
+    <style>
+		.logo-navbar{
+width: 127px;
+height: 50px;
+top: 0px;
+}
+
+
+.logo-rectangle{
+position: absolute;
+width: 67.06px;
+height: 50px;
+left: 31px;
+top: 0px;
+
+background: linear-gradient(306.71deg, #F77062 0%, #FE5196 100%);
+}
+
+.logo-text{
+position: absolute;
+width: 113.59px;
+height: 29.69px;
+left: 44.41px;
+top: 10.16px;
+
+font-family: Inter UI;
+font-style: italic;
+font-weight: 900;
+line-height: normal;
+font-size: 25px;
+letter-spacing: -0.05em;
+
+color: #FAFAFA;
+}
+
+.navigasi {
+height: 50px;
+}
+
+/* SIAK FG - Kurikulum */
+.home-title{
+margin-left: 25px;
+font-family: Inter UI;
+font-style: normal;
+font-weight: bold;
+line-height: 47px;
+font-size: 32px;
+
+color: #333333;
+}
+
+/* Home */
+.home-title1{
+margin-left: 25px;
+font-family: Inter UI;
+font-style: normal;
+font-weight: normal;
+line-height: 24px;
+font-size: 16px;
+
+color: #333333;
+}
+
+/* Home */
+.home-title2{
+font-family: Inter UI;
+font-style: normal;
+font-weight: normal;
+line-height: 24px;
+font-size: 16px;
+
+color: #333333;
+}
+
+/* Mata Kuliah */
+.matkul-par {
+position: absolute;
+width: 750px;
+height: 95px;
+top: 60px;
+
+font-family: Inter UI;
+font-style: normal;
+font-weight: normal;
+line-height: 24px;
+font-size: 16px;
+text-align: justify;
+
+color: #000000;
+}
+
+/* Rectangle 3 */
+.tambah-btn{
+position: absolute;
+width: 120px;
+height: 30px;
+left: 300px;
+top: 160px;
+
+background: #00E3AE;
+}
+
+.table-matkul {
+top: 480px;
+}
+
+/* Delete */
+.delete-btn {
+width: 120px;
+height: 11.05px;
+left: 1159px;
+top: 315.1px;
+
+font-family: Inter UI;
+font-style: normal;
+font-weight: normal;
+line-height: normal;
+font-size: 16px;
+text-align: center;
+
+color: #333333;
+}
+
+/* Rectangle 3 */
+.delete-btn {
+width: 95px;
+height: 25px;
+left: 630px;
+top: 100px;
+
+background: #FE5196;
+}
+
+/* Rectangle 3 */
+.save-btn{
+position: absolute;
+width: 95px;
+height: 25px;
+left: 710px;
+top: 220px;
+
+background: #00E3AE;
+}
+
+/* Simpan */
+.save-btn{
+font-family: Inter UI;
+font-style: normal;
+font-weight: normal;
+line-height: normal;
+font-size: 16px;
+text-align: center;
+
+color: #333333;
+}
+
+table, tr, td {
+border-top: none !important;
+	border-bottom: 2px inset black;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+
+	 </style>
+  </body>
+</html>

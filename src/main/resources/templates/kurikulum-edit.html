@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+	<head>
+  		<title th:text="${pagetitle}"></title>
+    	<div th:replace="fragments/fragment :: links"></div>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    	<meta charset="utf-8"/>
+    	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  	</head>  
+  
+  <body>
+	<div th:replace="fragments/fragment :: header"></div>
+		<h4 class="home-title" th:text="'SIAK FG - Edit ' + ${kurikulum.nama}">SIAK FG - </h4> 
+		<div class="navhome">
+			<a class="home-title1" th:href="@{/}">Home</a> >> <a th:href="@{/kurikulum}">Kurikulum</a> >> <a th:href="@{/kurikulum/detail(kode_kurikulum=${kurikulum.kode})}" th:text="${kurikulum.nama}">Kurikulum</a> >> <a>Edit Kurikulum</a>
+		</div>
+
+		<div class="container top-buffer">
+		<div class="form">
+		  		<form class="inputAction add" method="post" th:action="'/kurikulum/edit'" th:object="${kurikulum}">
+		  			<h4 th:text="${kurikulum.kode} + ' - Edit '" ></h4> 	
+					<input align="center" type="text" style="display:none" class="form-control" name="kode" th:value="${kurikulum.kode}" th:field="*{kode}"></input><br/>
+					Nama :<br/>
+					<input align="center" type="text" class="form-control" name="nama" th:value="${kurikulum.nama}" th:field="*{nama}"></input><br/>
+					
+					<input align="center" type="text" class="form-control" name="tahun" th:value="${kurikulum.tahun}" th:field="*{tahun}" hidden="hidden"></input><br/>
+					
+					<input align="center" type="text" class="form-control" name="sksWajib" th:value="${kurikulum.sksWajib}" th:field="*{sksWajib}" hidden="hidden"></input><br/>
+					
+					<input align="center" type="text" class="form-control" name="sksPilihan" th:value="${kurikulum.sksPilihan}" th:field="*{sksPilihan}" hidden="hidden"></input>
+					<p></p>
+	  				<input type="submit" value="Simpan" class="btn bg-green"></input>
+				</form>
+		</div>
+	  	 		<br/>
+	  	 		<br/>
+	  </div>
+	  
+	
+	 <div th:replace="fragments/fragment :: footer"></div>
+
+  </body>
+</html>

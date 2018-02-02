@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+  <head>
+  	<title th:text="${pagetitle}"></title>
+    	<div th:replace="fragments/fragment :: links"></div>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    	<meta charset="utf-8"/>
+    	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  </head>  
+   
+  
+  <body>
+  <div th:replace="fragments/fragment :: header"></div>
+    <h4 class="home-title" th:text="'SIAK FG - ' + ${kurikulum.nama}">SIAK FG - </h4> 
+	<div class="navhome">
+			<a class="home-title1" th:href="@{/}">Home</a> >> <a th:href="@{/kurikulum}">Kurikulum</a> >> <a th:href="@{/kurikulum/detail(kode_kurikulum=${kurikulum.kode})}" th:text="${kurikulum.nama}">Kurikulum</a> >> <a>Tambah Mata Kuliah</a>
+		</div>
+	<div class="container top-buffer">
+	 	<div class="row justify-content-end"></div>
+	      <div class="row justify-content-center">
+	        	<div class="col-3">Kode</div>
+	        	<div class="col-3" th:text="${kurikulum.kode}">Kode</div>
+		    </div>
+		    <div class="row justify-content-center">
+	        	<div class="col-3">Nama</div>
+	        	<div class="col-3" th:text="${kurikulum.nama}">Nama</div>
+	        </div>
+	        
+		    <div class="row justify-content-center">
+	        	<div class="col-3">Tahun Terbit</div>
+	        	<div class="col-3" th:text="${kurikulum.tahun}">Tahun Terbit</div>
+	        </div>
+	        
+		    <div class="row justify-content-center">
+	        	<div class="col-3">Jumlah SKS Wajib</div>
+	        	<div class="col-3" th:text="${kurikulum.sksWajib}">Jumlah SKS Wajib</div>        
+	        </div>
+	        
+		    <div class="row justify-content-center">
+	        	<div class="col-3">Jumlah SKS Pilihan</div>
+	        	<div class="col-3" th:text="${kurikulum.sksPilihan}">Jumlah SKS Pilihan</div>
+	      </div>
+	      <br/><br/>
+	<div class="row">
+        <main class="col-sm-12" role="main">
+			<div class="form">
+				<h5 th:text="'Pilih Mata Kuliah Baru untuk ' + ${kurikulum.nama}"></h5> <br/>
+		  		<form class="inputAction add" method="post" th:action="@{/kurikulum/add/matkul(kode_kurikulum = ${kurikulum.kode})}" th:object="${mataKuliah}">
+		  			<div class="form-group">
+		                <Label>Pilih Mata Kuliah</Label>
+		                <select class="form-control" name="pilihmatkul" id="pilihmatkul"  th:field="*{kode}" required="required">
+		                	<option th:disabled="disabled" value="" th:selected="selected">Pilih Mata Kuliah</option>
+			        		<option th:each="matkul : ${matkuls}" th:value="${matkul.kode}" th:text="${matkul.nama}"> b</option>
+		                </select>
+		            </div>
+		            <br/>
+		            <div class="form-group">
+		            	<label>Pilih Term untuk Mata Kuliah</label>
+		                <select class="form-control" name="term" id="term" th:field="*{term}" required="required">
+		                	<option th:disabled="disabled" value="" th:selected="selected">Pilih Term</option>
+			        		<option value="1">1</option>
+        					<option value="2">2</option>
+        					<option value="2">3</option>
+        					<option value="2">4</option>
+        					<option value="2">5</option>
+        					<option value="2">6</option>
+        					<option value="2">7</option>
+        					<option value="2">8</option>
+		                </select>
+		            </div>
+		            <br/>
+		            <div class="form-group">
+		            	<label>Jumlah SKS Prasyarat</label>
+					<input id="sksPrasyarat" align="center" type="number" class="form-control" name="nama"  th:field="*{sksPrasyarat}" required="required" value="{{model.PortNumber || 0}}"></input><br/>
+		            </div>
+		            <div class="form-group">
+		            	<label>Jenis Mata Kuliah</label>
+		                <select class="form-control" name="matkul" id="matkul" required="true"  th:field="*{isWajib}">
+		                	
+			        		<option th:disabled="disabled" value="" th:selected="selected">Pilih Jenis Mata Kuliah</option>
+			        		<option value="1">Mata Kuliah Wajib</option>
+        					<option value="0">Mata Kuliah Pilihan</option>
+		                </select>
+		            </div>
+					<p></p>
+	  				<center><input type="hidden" value="" name="edit_matkul"></input></center>
+					<center><button type="submit" class="btn bg-green btn-sm">Tambah Mata Kuliah</button></center>
+				</form>
+				<br/>
+				<form method="get" action="/kurikulum/detail">
+                	<input type="hidden" th:value="${kurikulum.kode}" name="kode_kurikulum"/>
+                	<center><input type="submit" value="Back" class="btn btn-sm"></input></center>
+                </form>
+			</div>
+		</main>
+		</div>
+		  <br/>
+	</div>
+	
+	 <div th:replace="fragments/fragment :: footer"></div>
+    <!-- Optional JavaScript -->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.dataTables.min.js"></script>
+	<script>
+
+   		document.getElementById("sksPrasyarat").defaultValue = "0";
+
+	</script>
+  </body>
+</html>

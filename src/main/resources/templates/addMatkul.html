@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+	<head>
+  		<title th:text="${pagetitle}"></title>
+    		<div th:replace="fragments/fragment :: links"></div>
+			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    		<meta charset="utf-8"/>
+    		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+	    	<!-- Bootstrap CSS -->
+	</head>  
+  
+
+    
+	<body>
+	<div th:replace="fragments/fragment :: header"></div>
+    	<h4 class="home-title">SIAK FG - Mata Kuliah  </h4>
+    	<div class="navhome">
+			<a class="home-title1" th:href="@{/}">Home</a> >> <a th:href="@{/matakuliah}">Mata Kuliah</a> >> <a>Tambah Mata Kuliah</a> 
+		</div>
+	
+	<div class="container top-buffer">
+		<div class="row">
+        <main class="col-sm-12" role="main">
+			<div class="form">
+				<h4 align="center">Tambah Mata Kuliah</h4>
+				<div th:if="${flag_error == true}">
+					<div class="alert alert-danger" th:text = "'Terjadi kesalahan dalam pengisian form'">
+        			</div>
+        		</div>
+		  		
+		  		<form class="inputAction add top-buffer" method="post" th:action="'/addMatkul'">
+					<label for="inputNama">Nama</label>
+					<p><small>Nama mata kuliah baru</small></p>
+					<input align="center" type="text" class="form-control" id="inputNama" maxlength="100" name="nama" required="true" placeholder="Max. 100 characters"></input><br/>
+			    	
+					<label for="inputNama">Jumlah SKS</label>
+					<p><small>Jumlah SKS pada mata kuliah yang ditambah</small></p>
+					<input align="center" type="text" class="form-control" name="jumlah_sks" id="inputNama" value="0"  min="0" max="999" required="true"></input><br/>
+					 
+					<label for="inputNama">Deskripsi</label>
+					<p><small>Deskripsi digunakan untuk mendeskripsikian suatu mata kuliah</small></p>
+			    	<input name="deskripsi" maxlength="256" type="text" class="form-control" id="inputNama"/> <br/> 			
+	  				<input type="submit" value="Tambah" class="btn bg-green btn-sm"></input>
+				</form>
+			</div>
+		</main>
+		</div>	 	
+		</div>
+		<br/>
+    <div th:replace="fragments/fragment :: footer"></div>
+  </body>
+</html>
